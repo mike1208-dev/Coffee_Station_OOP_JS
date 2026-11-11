@@ -1,0 +1,373 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coffee House | Online Store</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+
+    <main class="shop-container">
+
+        <!-- Category Navigation -->
+        <section class="category-navigation">
+
+            <div class="category-header">
+                <h1>Explore Categories</h1>
+                <p>Find your favorite products</p>
+            </div>
+
+            <nav class="category-list">
+                <button class="category-btn active">All Products</button>
+                <button class="category-btn">Coffee</button>
+                <button class="category-btn">Tea</button>
+                <button class="category-btn">Bread</button>
+            </nav>
+
+        </section>
+
+
+        <!-- Main Shop Content -->
+        <div class="shop-content">
+
+            <!-- Product Board -->
+            <section class="product-board">
+
+                <div class="product-board-header">
+                    <div>
+                        <h2>Our Products</h2>
+                        <p>Discover something delicious today.</p>
+                    </div>
+
+                    <div class="sort-container">
+                        <label for="sort-products">Sort by:</label>
+
+                        <select id="sort-products">
+                            <option value="default">Default</option>
+                            <option value="price-asc">Price: Low to High</option>
+                            <option value="price-desc">Price: High to Low</option>
+                            <option value="rating">Highest Rating</option>
+                            <option value="stock">Stock</option>
+                        </select>
+                    </div>
+                </div>
+
+
+                <!-- Product Grid -->
+                <div class="product-grid">
+
+                    <!-- Product Card 1 -->
+                    <article class="product-card">
+
+                        <div class="product-image">
+                            <img
+                                src="https://images.unsplash.com/photo-1570968915860-54d5c301fa9f?w=600"
+                                alt="Cappuccino coffee"
+                            >
+
+                            <span class="discount-badge">10% OFF</span>
+                        </div>
+
+                        <div class="product-info">
+
+                            <div class="product-title-row">
+                                <h3>Cappuccino</h3>
+                                <span class="product-rating">★ 4.9</span>
+                            </div>
+
+                            <p class="product-description">
+                                Rich espresso combined with smooth steamed milk.
+                            </p>
+
+                            <div class="product-price">
+                                <span class="current-price">$4.95</span>
+                                <span class="original-price">$5.50</span>
+                            </div>
+
+                            <button class="add-to-cart-btn">
+                                <span>+</span> Add to Cart
+                            </button>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- Product Card 2 -->
+                    <article class="product-card">
+
+                        <div class="product-image">
+                            <img
+                                src="https://images.unsplash.com/photo-1515823064-d6e0c04616a7?w=600"
+                                alt="Matcha green tea"
+                            >
+                        </div>
+
+                        <div class="product-info">
+
+                            <div class="product-title-row">
+                                <h3>Matcha Latte</h3>
+                                <span class="product-rating">★ 4.8</span>
+                            </div>
+
+                            <p class="product-description">
+                                Japanese matcha blended with creamy milk.
+                            </p>
+
+                            <div class="product-price">
+                                <span class="current-price">$6.00</span>
+                            </div>
+
+                            <button class="add-to-cart-btn">
+                                <span>+</span> Add to Cart
+                            </button>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- Product Card 3 -->
+                    <article class="product-card">
+
+                        <div class="product-image">
+                            <img
+                                src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=600"
+                                alt="Fresh croissant"
+                            >
+
+                            <span class="discount-badge">15% OFF</span>
+                        </div>
+
+                        <div class="product-info">
+
+                            <div class="product-title-row">
+                                <h3>Butter Croissant</h3>
+                                <span class="product-rating">★ 4.7</span>
+                            </div>
+
+                            <p class="product-description">
+                                Freshly baked croissant with a crispy exterior.
+                            </p>
+
+                            <div class="product-price">
+                                <span class="current-price">$2.98</span>
+                                <span class="original-price">$3.50</span>
+                            </div>
+
+                            <button class="add-to-cart-btn">
+                                <span>+</span> Add to Cart
+                            </button>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- Product Card 4 -->
+                    <article class="product-card">
+
+                        <div class="product-image">
+                            <img
+                                src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=600"
+                                alt="Iced latte"
+                            >
+                        </div>
+
+                        <div class="product-info">
+
+                            <div class="product-title-row">
+                                <h3>Iced Latte</h3>
+                                <span class="product-rating">★ 4.8</span>
+                            </div>
+
+                            <p class="product-description">
+                                Chilled espresso mixed with fresh milk.
+                            </p>
+
+                            <div class="product-price">
+                                <span class="current-price">$5.00</span>
+                            </div>
+
+                            <button class="add-to-cart-btn">
+                                <span>+</span> Add to Cart
+                            </button>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </section>
+
+
+            <!-- Cart Sidebar -->
+            <aside class="cart-sidebar">
+
+                <div class="cart-header">
+                    <div>
+                        <h2>Your Cart</h2>
+                        <p><span class="cart-count">3</span> items in your cart</p>
+                    </div>
+
+                    <span class="cart-icon">🛒</span>
+                </div>
+
+
+                <!-- Cart Items -->
+                <div class="cart-items">
+
+                    <!-- Cart Item 1 -->
+                    <article class="cart-item">
+
+                        <img
+                            class="cart-item-image"
+                            src="https://images.unsplash.com/photo-1570968915860-54d5c301fa9f?w=200"
+                            alt="Cappuccino"
+                        >
+
+                        <div class="cart-item-info">
+
+                            <h3>Cappuccino</h3>
+                            <p class="cart-item-price">$4.95 each</p>
+
+                            <div class="cart-item-controls">
+
+                                <div class="quantity-control">
+                                    <button class="quantity-btn">−</button>
+                                    <span class="quantity-value">2</span>
+                                    <button class="quantity-btn">+</button>
+                                </div>
+
+                                <button class="remove-item-btn">
+                                    Remove
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                        <span class="cart-item-subtotal">$9.90</span>
+
+                    </article>
+
+
+                    <!-- Cart Item 2 -->
+                    <article class="cart-item">
+
+                        <img
+                            class="cart-item-image"
+                            src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=200"
+                            alt="Butter croissant"
+                        >
+
+                        <div class="cart-item-info">
+
+                            <h3>Butter Croissant</h3>
+                            <p class="cart-item-price">$2.98 each</p>
+
+                            <div class="cart-item-controls">
+
+                                <div class="quantity-control">
+                                    <button class="quantity-btn">−</button>
+                                    <span class="quantity-value">1</span>
+                                    <button class="quantity-btn">+</button>
+                                </div>
+
+                                <button class="remove-item-btn">
+                                    Remove
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                        <span class="cart-item-subtotal">$2.98</span>
+
+                    </article>
+
+
+                    <!-- Cart Item 3 -->
+                    <article class="cart-item">
+
+                        <img
+                            class="cart-item-image"
+                            src="https://images.unsplash.com/photo-1515823064-d6e0c04616a7?w=200"
+                            alt="Matcha latte"
+                        >
+
+                        <div class="cart-item-info">
+
+                            <h3>Matcha Latte</h3>
+                            <p class="cart-item-price">$6.00 each</p>
+
+                            <div class="cart-item-controls">
+
+                                <div class="quantity-control">
+                                    <button class="quantity-btn">−</button>
+                                    <span class="quantity-value">1</span>
+                                    <button class="quantity-btn">+</button>
+                                </div>
+
+                                <button class="remove-item-btn">
+                                    Remove
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                        <span class="cart-item-subtotal">$6.00</span>
+
+                    </article>
+
+                </div>
+
+
+                <!-- Cart Summary -->
+                <div class="cart-summary">
+
+                    <h3>Order Summary</h3>
+
+                    <div class="summary-row">
+                        <span>Subtotal</span>
+                        <span>$18.88</span>
+                    </div>
+
+                    <div class="summary-row discount-row">
+                        <span>Discount</span>
+                        <span>−$0.00</span>
+                    </div>
+
+                    <div class="summary-divider"></div>
+
+                    <div class="summary-row total-row">
+                        <span>Total</span>
+                        <strong>$18.88</strong>
+                    </div>
+
+                    <button class="checkout-btn">
+                        Proceed to Checkout
+                    </button>
+
+                    <p class="checkout-note">
+                        Thank you for choosing Coffee House!
+                    </p>
+
+                </div>
+
+            </aside>
+
+        </div>
+
+    </main>
+
+</body>
+
+<script src="./js/main.js"></script>
+
+</html>
