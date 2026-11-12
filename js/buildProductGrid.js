@@ -3,7 +3,6 @@ export const buildProductGrid = (products) => {
     
     for (let i = 0; i < products.length; i ++) {
         productGrid += `
-            <!-- Product Card 1 -->
             <article class="product-card">
                 <div class="product-image">
                     <img
