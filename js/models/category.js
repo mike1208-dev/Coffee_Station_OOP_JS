@@ -32,6 +32,7 @@ export class Category {
     }
 
     filterByCategory(category) {
+        if (category === "All") return this.#products;
         return this.#products.filter(
             product => product.category === category
         );
