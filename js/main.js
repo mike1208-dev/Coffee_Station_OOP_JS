@@ -18,3 +18,10 @@ buttons.forEach((button, index) => {
     button.addEventListener("click", () => clickCategory(index));
 });
 
+const sortSelect = document.getElementById("sort-products");
+
+sortSelect.addEventListener("change", () => {
+    const products = category.sortBy(sortSelect.value);
+    buildProductGrid(products);
+});
+

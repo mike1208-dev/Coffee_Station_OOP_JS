@@ -12,11 +12,12 @@ const productClasses = {
 
 export class Category {
     #products;
+    #allProducts;
 
     constructor() {
-        this.#products = products.map(product => {
+        this.#allProducts = products.map(product => {
             const ProductClass = productClasses[product.category];
-
+            
             if (!ProductClass) {
                 throw new Error(
                     `Unknown product category: ${product.category}`
@@ -25,6 +26,7 @@ export class Category {
 
             return new ProductClass(product);
         });
+        this.#products = this.#allProducts;
     }
 
     get products() {
@@ -32,19 +34,20 @@ export class Category {
     }
 
     filterByCategory(category) {
-        if (category === "All") return this.#products;
-        return this.#products.filter(
+        if (category === "All") return this.#allProducts;
+        this.#products = this.#allProducts.filter(
             product => product.category === category
         );
+        return [...this.#products];
     }
 
     sortBy(property) {
-        const allowedProperties = ["price", "rating", "stock"];
+        const allowedProperties = ["default", "price", "rating", "stock"];
 
         if (!allowedProperties.includes(property)) {
             throw new Error(`Invalid sorting property: ${property}`);
         }
-
+        
         return [...this.#products].sort((a, b) => {
             return a[property] - b[property];
         });
