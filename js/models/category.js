@@ -14,6 +14,7 @@ export class Category {
     #products;
     #allProducts;
     #nowSortState;
+    #nowCategory;
 
     constructor() {
         this.#allProducts = products.map(product => {
@@ -29,6 +30,7 @@ export class Category {
         });
         this.#products = this.#allProducts;
         this.#nowSortState = "default";
+        this.#nowCategory = "All";
     }
 
     get products() {
@@ -41,6 +43,7 @@ export class Category {
             product => product.category === category
         );
 
+        this.#nowCategory = category;
         this.#products = this.sortBy(this.#nowSortState);
 
         return [...this.#products];
@@ -54,6 +57,12 @@ export class Category {
         }
         
         this.#nowSortState = property;
+
+        if (property === "default") {
+            this.#products = this.#allProducts.filter(
+                product => product.category === this.#nowCategory
+            );
+        }
 
         return [...this.#products].sort((a, b) => {
             if (property === "price-htl") return b["price"] - a["price"];
