@@ -1,10 +1,7 @@
-import { products } from "../data/product.js";
-
-export const buildProductGrid = (category) => {
+export const buildProductGrid = (products) => {
     let productGrid = ``;
-
+    
     for (let i = 0; i < products.length; i ++) {
-        if (products[i].category !== category) continue;
         productGrid += `
             <!-- Product Card 1 -->
             <article class="product-card">
