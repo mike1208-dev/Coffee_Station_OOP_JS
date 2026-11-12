@@ -49,7 +49,7 @@ export class Category {
         }
         
         return [...this.#products].sort((a, b) => {
-            return a[property] - b[property];
+            return b[property] - a[property];
         });
     }
 }
