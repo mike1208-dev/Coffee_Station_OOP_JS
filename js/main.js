@@ -1,6 +1,3 @@
-import { Product } from "./models/product.js";
-import { products } from "./data/product.js";
+import {buildProductGrid} from "./models/buildProductGrid.js"
 
-const product = new Product(products[0]);
-
-console.log(product.isTopSelling());
+buildProductGrid("Bread");

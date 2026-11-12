@@ -6,7 +6,7 @@ export const products = [
         category: "Coffee",
         description: "Rich espresso with steamed milk and a light layer of foam.",
         price: 4.50,
-        image: "coffee (1)",
+        image: "coffee (1).avif",
         rating: 4.8,
         stock: 12,
         temperature: "ice",
