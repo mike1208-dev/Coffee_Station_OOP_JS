@@ -34,8 +34,8 @@ export class Category {
     }
 
     filterByCategory(category) {
-        if (category === "All") return this.#allProducts;
-        this.#products = this.#allProducts.filter(
+        if (category === "All") this.#products = this.#allProducts;
+        else this.#products = this.#allProducts.filter(
             product => product.category === category
         );
         return [...this.#products];

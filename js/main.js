@@ -1,4 +1,4 @@
-import {buildProductGrid} from "./models/buildProductGrid.js";
+import {buildProductGrid} from "./buildProductGrid.js";
 import { Category } from "./models/category.js";
 
 const category = new Category();
