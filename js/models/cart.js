@@ -16,31 +16,30 @@ export class Cart {
         return -1;
     }
     
-    AddItem (product) {
-        const index = this.findIndexById(product.id);
+    addItem (product) {
+        const index = this.findById(product.id);
+        const quantityInCart = index === -1 ? 0 : this.#cartItems[index].quantity;
+
+        if (quantityInCart >= product.stock) return false;
 
         if (index === -1) {
-            const newItem = new CartItem({
+            this.#cartItems.push(new CartItem({
                 id: product.id,
                 name: product.name,
                 price: product.price,
                 image: product.image,
                 quantity: 1
-            });
-            this.#cartItems.push(newItem);
+            }));
         } else {
             this.#cartItems[index].changeQuantity(false);
         }
+        return true;
     }
 
     removeItem (id) {
-        const index = this.findIndexById(id);
-
-        if (index === -1) {
-            console.log("Can't find this item!");
-            return;
-        }
-        this.#cartItems = this.#cartItems.filter((item, i) => i !== index);
+        const before = this.#cartItems.length;
+        this.#cartItems = this.#cartItems.filter((item) => item.id !== id);
+        return this.#cartItems.length < before;
     }
 
     get cartItems () {
@@ -52,7 +51,7 @@ export class Cart {
         for (let i = 0; i < this.#cartItems.length; i ++) {
             totalPrice += this.#cartItems[i].getSubTotal();
         }
-        return totalPrice;
+        return Math.round(totalPrice * 100) / 100;
     }
     
     getTotalWithDiscount () {
@@ -60,7 +59,7 @@ export class Cart {
         for (let i = 0; i < this.#cartItems.length; i ++) {
             totalPrice += this.#cartItems[i].getSubTotalWithDiscount();
         }
-        return totalPrice;
+        return Math.round(totalPrice * 100) / 100;
     }
 
 }
