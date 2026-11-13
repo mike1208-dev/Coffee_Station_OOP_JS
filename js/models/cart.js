@@ -17,7 +17,7 @@ export class Cart {
         return -1;
     }
     
-    AddItem (product) {
+    addItem (product) {
         const index = this.findById(product.id);
 
         if (index === -1) {
@@ -35,13 +35,9 @@ export class Cart {
     }
 
     removeItem (id) {
-        const index = this.findById(id);
-
-        if (index === -1) {
-            console.log("Can't find this item!");
-            return;
-        }
-        this.#cartItems = this.#cartItems.filter((item, i) => i !== index);
+        const before = this.#cartItems.length;
+        this.#cartItems = this.#cartItems.filter((item) => item.id !== id);
+        return this.#cartItems.length < before;
     }
 
     get cartItems () {
@@ -65,24 +61,3 @@ export class Cart {
     }
 
 }
-
-const product = new Product({
-    id: "c1",
-    name: "Classic Latte",
-    category: "Coffee",
-    description: "Rich espresso with steamed milk and a light layer of foam.",
-    price: 4.50,
-    image: "coffee (1)",
-    rating: 4.8,
-    stock: 12
-});
-const product2 = new Product({
-    id: "c2",
-    name: "Classic Latte",
-    category: "Coffee",
-    description: "Rich espresso with steamed milk and a light layer of foam.",
-    price: 4.50,
-    image: "coffee (1)",
-    rating: 4.8,
-    stock: 12
-});
