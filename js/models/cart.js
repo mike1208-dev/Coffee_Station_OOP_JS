@@ -49,7 +49,7 @@ export class Cart {
         for (let i = 0; i < this.#cartItems.length; i ++) {
             totalPrice += this.#cartItems[i].getSubTotal();
         }
-        return totalPrice;
+        return Math.round(totalPrice * 100) / 100;
     }
     
     getTotalWithDiscount () {
@@ -57,7 +57,7 @@ export class Cart {
         for (let i = 0; i < this.#cartItems.length; i ++) {
             totalPrice += this.#cartItems[i].getSubTotalWithDiscount();
         }
-        return totalPrice;
+        return Math.round(totalPrice * 100) / 100;
     }
 
 }
