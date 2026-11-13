@@ -12,9 +12,12 @@ const productClasses = {
 
 export class Category {
     #products;
+    #allProducts;
+    #nowSortState;
+    #nowCategory;
 
     constructor() {
-        this.#products = products.map(product => {
+        this.#allProducts = products.map(product => {
             const ProductClass = productClasses[product.category];
 
             if (!ProductClass) {
@@ -25,6 +28,10 @@ export class Category {
 
             return new ProductClass(product);
         });
+        
+        this.#products = this.#allProducts;
+        this.#nowSortState = "default";
+        this.#nowCategory = "All";
     }
 
     get products() {
@@ -32,20 +39,38 @@ export class Category {
     }
 
     filterByCategory(category) {
-        return this.#products.filter(
+        if (category === "All") this.#products = this.#allProducts;
+        else this.#products = this.#allProducts.filter(
             product => product.category === category
         );
+
+        this.#nowCategory = category;
+        this.#products = this.sortBy(this.#nowSortState);
+        
+        return [...this.#products];
     }
 
     sortBy(property) {
-        const allowedProperties = ["price", "rating", "stock"];
+        const allowedProperties = ["default", "price-htl", "price-lth", "rating", "stock"];
 
         if (!allowedProperties.includes(property)) {
             throw new Error(`Invalid sorting property: ${property}`);
         }
+        
+        this.#nowSortState = property;
+
+        if (property === "default") {
+            if (this.#nowCategory === "All")
+                this.#products = this.#allProducts;
+            else this.#products = this.#allProducts.filter(
+                    product => product.category === this.#nowCategory
+                );
+        }
 
         return [...this.#products].sort((a, b) => {
-            return a[property] - b[property];
+            if (property === "price-htl") return b["price"] - a["price"];
+            if (property === "price-lth") return a["price"] - b["price"];
+            return b[property] - a[property];
         });
     }
 }
