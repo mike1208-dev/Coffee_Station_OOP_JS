@@ -1,5 +1,4 @@
 import { CartItem } from "./cartItem.js";
-import { Product } from "./product.js";
 
 export class Cart {
     #cartItems;
@@ -8,7 +7,7 @@ export class Cart {
         this.#cartItems = [];
     }
 
-    findById (id) {
+    findIndexById (id) {
         for (let i = 0; i < this.#cartItems.length; i ++) {
             if (this.#cartItems[i].id === id) {
                 return i;
@@ -18,7 +17,7 @@ export class Cart {
     }
     
     AddItem (product) {
-        const index = this.findById(product.id);
+        const index = this.findIndexById(product.id);
 
         if (index === -1) {
             const newItem = new CartItem({
@@ -35,7 +34,7 @@ export class Cart {
     }
 
     removeItem (id) {
-        const index = this.findById(id);
+        const index = this.findIndexById(id);
 
         if (index === -1) {
             console.log("Can't find this item!");
@@ -65,24 +64,3 @@ export class Cart {
     }
 
 }
-
-const product = new Product({
-    id: "c1",
-    name: "Classic Latte",
-    category: "Coffee",
-    description: "Rich espresso with steamed milk and a light layer of foam.",
-    price: 4.50,
-    image: "coffee (1)",
-    rating: 4.8,
-    stock: 12
-});
-const product2 = new Product({
-    id: "c2",
-    name: "Classic Latte",
-    category: "Coffee",
-    description: "Rich espresso with steamed milk and a light layer of foam.",
-    price: 4.50,
-    image: "coffee (1)",
-    rating: 4.8,
-    stock: 12
-});
