@@ -1,27 +1,47 @@
-import {buildProductGrid} from "./buildProductGrid.js";
+import { buildProductGrid } from "./buildProductGrid.js";
 import { Category } from "./models/category.js";
 
 const category = new Category();
 
-buildProductGrid(category.products);
-
-const categoryList = ["All", "Coffee", "Tea", "Bread"];
-
-const clickCategory = (index) => {
-    const products = category.filterByCategory(categoryList[index]);
-    buildProductGrid(products);
-}
-
 const buttons = document.querySelectorAll(".category-btn");
-
-buttons.forEach((button, index) => {
-    button.addEventListener("click", () => clickCategory(index));
-});
-
 const sortSelect = document.getElementById("sort-products");
 
-sortSelect.addEventListener("change", () => {
-    const products = category.sortBy(sortSelect.value);
+let activeCategory = "All";
+
+const renderProducts = () => {
+
+    let products = sortSelect.value
+        ? category.sortBy(sortSelect.value)
+        : category.products;
+
+    if (activeCategory !== "All") {
+        products = products.filter(
+            product => product.category === activeCategory
+        );
+    }
+
     buildProductGrid(products);
+};
+
+buttons.forEach(button => {
+
+    button.addEventListener("click", () => {
+
+        activeCategory = button.dataset.category;
+
+        buttons.forEach(btn => {
+            btn.classList.remove("active");
+        });
+
+        button.classList.add("active");
+
+        renderProducts();
+    });
+
 });
 
+sortSelect.addEventListener("change", () => {
+    renderProducts();
+});
+
+renderProducts();

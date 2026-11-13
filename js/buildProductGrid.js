@@ -7,7 +7,7 @@ export const buildProductGrid = (products) => {
                 <div class="product-image">
                     <img
                         src="./assets/images/${products[i].image}"
-                        alt=${products[i].name}
+                        alt="${products[i].name}"
                     >
                 </div>
                 <div class="product-info">
@@ -18,7 +18,7 @@ export const buildProductGrid = (products) => {
                     <p class="product-description">${products[i].description}</p>
                     <div class="product-price">
                         <span class="current-price">Price: </span>
-                        <span class="current-price">$${products[i].price}</span>
+                        <span class="current-price">$${products[i].price.toFixed(2)}</span>
                         </div>
                     <div>
                         <span class="current-price">Stock: </span>
