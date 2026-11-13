@@ -28,6 +28,7 @@ export class Category {
 
             return new ProductClass(product);
         });
+        
         this.#products = this.#allProducts;
         this.#nowSortState = "default";
         this.#nowCategory = "All";
@@ -45,7 +46,7 @@ export class Category {
 
         this.#nowCategory = category;
         this.#products = this.sortBy(this.#nowSortState);
-
+        
         return [...this.#products];
     }
 
@@ -59,9 +60,11 @@ export class Category {
         this.#nowSortState = property;
 
         if (property === "default") {
-            this.#products = this.#allProducts.filter(
-                product => product.category === this.#nowCategory
-            );
+            if (this.#nowCategory === "All")
+                this.#products = this.#allProducts;
+            else this.#products = this.#allProducts.filter(
+                    product => product.category === this.#nowCategory
+                );
         }
 
         return [...this.#products].sort((a, b) => {
