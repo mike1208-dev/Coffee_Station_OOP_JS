@@ -19,19 +19,22 @@ export class Cart {
     
     addItem (product) {
         const index = this.findById(product.id);
+        const quantityInCart = index === -1 ? 0 : this.#cartItems[index].quantity;
+
+        if (quantityInCart >= product.stock) return false;
 
         if (index === -1) {
-            const newItem = new CartItem({
+            this.#cartItems.push(new CartItem({
                 id: product.id,
                 name: product.name,
                 price: product.price,
                 image: product.image,
                 quantity: 1
-            });
-            this.#cartItems.push(newItem);
+            }));
         } else {
             this.#cartItems[index].changeQuantity(false);
         }
+        return true;
     }
 
     removeItem (id) {
