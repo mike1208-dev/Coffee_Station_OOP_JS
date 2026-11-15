@@ -38,6 +38,10 @@ export class Category {
         return [...this.#products];
     }
 
+    findById(id) {
+        return this.#allProducts.find(product => product.id === id);
+    }
+    
     filterByCategory(category) {
         if (category === "All") this.#products = this.#allProducts;
         else this.#products = this.#allProducts.filter(

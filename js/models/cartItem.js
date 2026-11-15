@@ -1,18 +1,20 @@
 export class CartItem {
-    #id; #name; #price; #image; #quantity;
+    #id; #name; #price; #image; #quantity; #stock;
 
     // constructor
-    constructor ({id, name, price, image, quantity}) {
+    constructor ({id, name, price, image, quantity, stock}) {
         
         if (price <= 0) { throw new Error("Price must be greater than zero."); }
         if (quantity <= 0) { throw new Error("Quantity must be greater than zero."); }
-
+        if (quantity > stock) { throw new Error("Quantity cannot be more than stock."); }
+        
         this.#id = id;
         this.#name = name;
         this.#price = price;
         this.#image = image;
         this.#quantity = quantity;
-
+        this.#stock = stock;
+        
     }
 
     // getter
@@ -21,6 +23,7 @@ export class CartItem {
     get price () { return this.#price; }
     get image () { return this.#image; }
     get quantity () { return this.#quantity; }
+    get stock () { return this.#stock; }
     
     calcDiscount () {
         if (this.#quantity <= 5) return 1;
@@ -30,10 +33,9 @@ export class CartItem {
         return 0.6;
     }
     
-    changeQuantity (x) {
-        if (x == true) this.#quantity --;
-        else this.#quantity ++;
-    }
+    increase () { this.#quantity ++; }
+    
+    decrease () { this.#quantity --; }
 
     getSubTotal () {
         return this.#price * this.#quantity;
@@ -44,13 +46,3 @@ export class CartItem {
     }
 
 }
-
-const cartItem = new CartItem({
-    id: "c1",
-    name: "Classic Latte",
-    price: 4.50,
-    image: "coffee (1)",
-    quantity: 10
-})
-
-console.log(cartItem.getSubTotal());
