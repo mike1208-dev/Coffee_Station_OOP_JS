@@ -3,20 +3,20 @@ import { CartItem } from "./cartItem.js";
 export class Cart {
     #cartItems;
 
-    constructor () {
+    constructor() {
         this.#cartItems = [];
     }
 
-    findIndexById (id) {
-        for (let i = 0; i < this.#cartItems.length; i ++) {
+    findIndexById(id) {
+        for (let i = 0; i < this.#cartItems.length; i++) {
             if (this.#cartItems[i].id === id) {
                 return i;
             }
         }
         return -1;
     }
-    
-    addItem (product) {
+
+    addItem(product) {
         const index = this.findIndexById(product.id);
         const quantityInCart = index === -1 ? 0 : this.#cartItems[index].quantity;
 
@@ -29,33 +29,37 @@ export class Cart {
         }
 
         if (index === -1) {
-            this.#cartItems.push(new CartItem({
-                id: product.id,
-                name: product.name,
-                price: product.price,
-                image: product.image,
-                quantity: 1,
-                stock: product.stock
-            }));
+            this.#cartItems.push(
+                new CartItem({
+                    id: product.id,
+                    name: product.name,
+                    price: product.price,
+                    image: product.image,
+                    quantity: 1,
+                    stock: product.stock,
+                })
+            );
         } else {
             this.#cartItems[index].increase();
         }
         return true;
     }
 
-    removeItem (id) {
+    removeItem(id) {
         const before = this.#cartItems.length;
         this.#cartItems = this.#cartItems.filter((item) => item.id !== id);
         return this.#cartItems.length < before;
     }
 
-    get cartItems () {
+    get cartItems() {
         return [...this.#cartItems];
     }
 
-    changeQuantity (id, action) {
+    changeQuantity(id, action) {
         const index = this.findIndexById(id);
-        if (index === -1) return false;
+        if (index === -1) {
+            return false;
+        }
 
         const item = this.#cartItems[index];
 
@@ -71,21 +75,20 @@ export class Cart {
         }
         return true;
     }
-    
-    getTotal () {
+
+    getTotal() {
         let totalPrice = 0;
-        for (let i = 0; i < this.#cartItems.length; i ++) {
+        for (let i = 0; i < this.#cartItems.length; i++) {
             totalPrice += this.#cartItems[i].getSubTotal();
         }
         return Math.round(totalPrice * 100) / 100;
     }
-    
-    getTotalWithDiscount () {
+
+    getTotalWithDiscount() {
         let totalPrice = 0;
-        for (let i = 0; i < this.#cartItems.length; i ++) {
+        for (let i = 0; i < this.#cartItems.length; i++) {
             totalPrice += this.#cartItems[i].getSubTotalWithDiscount();
         }
         return Math.round(totalPrice * 100) / 100;
     }
-
 }

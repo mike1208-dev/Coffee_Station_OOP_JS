@@ -1,146 +1,105 @@
-
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coffee House | Online Store</title>
-    <link rel="stylesheet" href="./css/style.css">
-</head>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Coffee House | Online Store</title>
+        <link rel="stylesheet" href="./css/style.css" />
+    </head>
 
-<body>
-
-    <main class="shop-container">
-
-        <!-- Category Navigation -->
-        <section class="category-navigation">
-
-            <div class="category-header">
-                <h1>Explore Categories</h1>
-                <p>Find your favorite products</p>
-            </div>
-
-            <nav class="category-list">
-                <button
-                    class="category-btn active"
-                    data-category="All"
-                >
-                    All Products
-                </button>
-
-                <button
-                    class="category-btn"
-                    data-category="Coffee"
-                >
-                    Coffee
-                </button>
-
-                <button
-                    class="category-btn"
-                    data-category="Tea"
-                >
-                    Tea
-                </button>
-
-                <button
-                    class="category-btn"
-                    data-category="Bread"
-                >
-                    Bread
-                </button>
-            </nav>
-
-        </section>
-
-
-        <!-- Main Shop Content -->
-        <div class="shop-content">
-
-            <!-- Product Board -->
-            <section class="product-board">
-
-                <div class="product-board-header">
-                    <div>
-                        <h2>Our Products</h2>
-                        <p>Discover something delicious today.</p>
-                    </div>
-
-                    <div class="sort-container">
-                        <label for="sort-products">Sort by:</label>
-
-                        <select id="sort-products">
-                            <option value="default">Default</option>
-                            <option value="price-htl">Price: High to Low</option>
-                            <option value="price-lth">Price: Low to High</option>
-                            <option value="rating">Rating</option>
-                            <option value="stock">Stock</option>
-                        </select>
-                    </div>
+    <body>
+        <main class="shop-container">
+            <!-- Category Navigation -->
+            <section class="category-navigation">
+                <div class="category-header">
+                    <h1>Explore Categories</h1>
+                    <p>Find your favorite products</p>
                 </div>
 
+                <nav class="category-list">
+                    <button class="category-btn active" data-category="All">All Products</button>
 
-                <!-- Product Grid -->
-                <div class="product-grid" id="product-grid"></div>
+                    <button class="category-btn" data-category="Coffee">Coffee</button>
 
+                    <button class="category-btn" data-category="Tea">Tea</button>
+
+                    <button class="category-btn" data-category="Bread">Bread</button>
+                </nav>
             </section>
 
+            <!-- Main Shop Content -->
+            <div class="shop-content">
+                <!-- Product Board -->
+                <section class="product-board">
+                    <div class="product-board-header">
+                        <div>
+                            <h2>Our Products</h2>
+                            <p>Discover something delicious today.</p>
+                        </div>
 
-            <!-- Cart Sidebar -->
-            <aside class="cart-sidebar">
+                        <div class="sort-container">
+                            <label for="sort-products">Sort by:</label>
 
-                <div class="cart-header">
-                    <div>
-                        <h2>Your Cart</h2>
-                        <p><span class="cart-count" id="cart-count">0</span> <span id="cart-count-letter">items in your cart</span></p>
+                            <select id="sort-products">
+                                <option value="default">Default</option>
+                                <option value="price-htl">Price: High to Low</option>
+                                <option value="price-lth">Price: Low to High</option>
+                                <option value="rating">Rating</option>
+                                <option value="stock">Stock</option>
+                            </select>
+                        </div>
                     </div>
 
-                    <span class="cart-icon">🛒</span>
-                </div>
+                    <!-- Product Grid -->
+                    <div class="product-grid" id="product-grid"></div>
+                </section>
 
+                <!-- Cart Sidebar -->
+                <aside class="cart-sidebar">
+                    <div class="cart-header">
+                        <div>
+                            <h2>Your Cart</h2>
+                            <p>
+                                <span class="cart-count" id="cart-count">0</span>
+                                <span id="cart-count-letter">items in your cart</span>
+                            </p>
+                        </div>
 
-                <!-- Cart Items -->
-                <div class="cart-items" id="cart-items"></div>
-
-                <!-- Cart Summary -->
-                <div class="cart-summary">
-
-                    <h3>Order Summary</h3>
-
-                    <div class="summary-row">
-                        <span>Subtotal</span>
-                        <span id="subtotal">$0.00</span>
+                        <span class="cart-icon">🛒</span>
                     </div>
 
-                    <div class="summary-row discount-row">
-                        <span>Discount</span>
-                        <span id="discount">−$0.00</span>
+                    <!-- Cart Items -->
+                    <div class="cart-items" id="cart-items"></div>
+
+                    <!-- Cart Summary -->
+                    <div class="cart-summary">
+                        <h3>Order Summary</h3>
+
+                        <div class="summary-row">
+                            <span>Subtotal</span>
+                            <span id="subtotal">$0.00</span>
+                        </div>
+
+                        <div class="summary-row discount-row">
+                            <span>Discount</span>
+                            <span id="discount">−$0.00</span>
+                        </div>
+
+                        <div class="summary-divider"></div>
+
+                        <div class="summary-row total-row">
+                            <span>Total</span>
+                            <strong id="total">$0.00</strong>
+                        </div>
+
+                        <button class="checkout-btn">Proceed to Checkout</button>
+
+                        <p class="checkout-note">Thank you for choosing Coffee House!</p>
                     </div>
+                </aside>
+            </div>
+        </main>
+    </body>
 
-                    <div class="summary-divider"></div>
-
-                    <div class="summary-row total-row">
-                        <span>Total</span>
-                        <strong id="total">$0.00</strong>
-                    </div>
-
-                    <button class="checkout-btn">
-                        Proceed to Checkout
-                    </button>
-
-                    <p class="checkout-note">
-                        Thank you for choosing Coffee House!
-                    </p>
-
-                </div>
-
-            </aside>
-
-        </div>
-
-    </main>
-
-</body>
-
-<script type="module" src="./js/main.js"></script>
-
+    <script type="module" src="./js/main.js"></script>
 </html>
