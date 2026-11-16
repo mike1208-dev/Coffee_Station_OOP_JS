@@ -91,7 +91,7 @@
                 <div class="cart-header">
                     <div>
                         <h2>Your Cart</h2>
-                        <p><span class="cart-count">3</span> items in your cart</p>
+                        <p><span class="cart-count" id="cart-count">0</span> <span id="cart-count-letter">items in your cart</span></p>
                     </div>
 
                     <span class="cart-icon">🛒</span>
@@ -99,113 +99,7 @@
 
 
                 <!-- Cart Items -->
-                <div class="cart-items">
-
-                    <!-- Cart Item 1 -->
-                    <article class="cart-item">
-
-                        <img
-                            class="cart-item-image"
-                            src="https://images.unsplash.com/photo-1570968915860-54d5c301fa9f?w=200"
-                            alt="Cappuccino"
-                        >
-
-                        <div class="cart-item-info">
-
-                            <h3>Cappuccino</h3>
-                            <p class="cart-item-price">$4.95 each</p>
-
-                            <div class="cart-item-controls">
-
-                                <div class="quantity-control">
-                                    <button class="quantity-btn">−</button>
-                                    <span class="quantity-value">2</span>
-                                    <button class="quantity-btn">+</button>
-                                </div>
-
-                                <button class="remove-item-btn">
-                                    Remove
-                                </button>
-
-                            </div>
-
-                        </div>
-
-                        <span class="cart-item-subtotal">$9.90</span>
-
-                    </article>
-
-
-                    <!-- Cart Item 2 -->
-                    <article class="cart-item">
-
-                        <img
-                            class="cart-item-image"
-                            src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=200"
-                            alt="Butter croissant"
-                        >
-
-                        <div class="cart-item-info">
-
-                            <h3>Butter Croissant</h3>
-                            <p class="cart-item-price">$2.98 each</p>
-
-                            <div class="cart-item-controls">
-
-                                <div class="quantity-control">
-                                    <button class="quantity-btn">−</button>
-                                    <span class="quantity-value">1</span>
-                                    <button class="quantity-btn">+</button>
-                                </div>
-
-                                <button class="remove-item-btn">
-                                    Remove
-                                </button>
-
-                            </div>
-
-                        </div>
-
-                        <span class="cart-item-subtotal">$2.98</span>
-
-                    </article>
-
-
-                    <!-- Cart Item 3 -->
-                    <article class="cart-item">
-
-                        <img
-                            class="cart-item-image"
-                            src="https://images.unsplash.com/photo-1515823064-d6e0c04616a7?w=200"
-                            alt="Matcha latte"
-                        >
-
-                        <div class="cart-item-info">
-
-                            <h3>Matcha Latte</h3>
-                            <p class="cart-item-price">$6.00 each</p>
-
-                            <div class="cart-item-controls">
-
-                                <div class="quantity-control">
-                                    <button class="quantity-btn">−</button>
-                                    <span class="quantity-value">1</span>
-                                    <button class="quantity-btn">+</button>
-                                </div>
-
-                                <button class="remove-item-btn">
-                                    Remove
-                                </button>
-
-                            </div>
-
-                        </div>
-
-                        <span class="cart-item-subtotal">$6.00</span>
-
-                    </article>
-
-                </div>
+                <div class="cart-items" id="cart-items"></div>
 
                 <!-- Cart Summary -->
                 <div class="cart-summary">
@@ -214,19 +108,19 @@
 
                     <div class="summary-row">
                         <span>Subtotal</span>
-                        <span>$18.88</span>
+                        <span id="subtotal">$0.00</span>
                     </div>
 
                     <div class="summary-row discount-row">
                         <span>Discount</span>
-                        <span>−$0.00</span>
+                        <span id="discount">−$0.00</span>
                     </div>
 
                     <div class="summary-divider"></div>
 
                     <div class="summary-row total-row">
                         <span>Total</span>
-                        <strong>$18.88</strong>
+                        <strong id="total">$0.00</strong>
                     </div>
 
                     <button class="checkout-btn">

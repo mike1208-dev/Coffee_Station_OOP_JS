@@ -20,7 +20,13 @@ export class Cart {
         const index = this.findIndexById(product.id);
         const quantityInCart = index === -1 ? 0 : this.#cartItems[index].quantity;
 
-        if (quantityInCart >= product.stock) return false;
+        if (product.stock === 0) {
+            return false;
+        }
+
+        if (quantityInCart >= product.stock) {
+            return false;
+        }
 
         if (index === -1) {
             this.#cartItems.push(new CartItem({
@@ -28,10 +34,11 @@ export class Cart {
                 name: product.name,
                 price: product.price,
                 image: product.image,
-                quantity: 1
+                quantity: 1,
+                stock: product.stock
             }));
         } else {
-            this.#cartItems[index].changeQuantity(false);
+            this.#cartItems[index].increase();
         }
         return true;
     }
@@ -46,6 +53,25 @@ export class Cart {
         return [...this.#cartItems];
     }
 
+    changeQuantity (id, action) {
+        const index = this.findIndexById(id);
+        if (index === -1) return false;
+
+        const item = this.#cartItems[index];
+
+        if (action === "increase") {
+            if (item.quantity >= item.stock) {
+                return false;
+            }
+            item.increase();
+        } else if (item.quantity === 1) {
+            this.removeItem(id);
+        } else {
+            item.decrease();
+        }
+        return true;
+    }
+    
     getTotal () {
         let totalPrice = 0;
         for (let i = 0; i < this.#cartItems.length; i ++) {

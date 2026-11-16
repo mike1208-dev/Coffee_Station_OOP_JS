@@ -39,14 +39,3 @@ export class Product {
     }
 
 }
-
-const product = new Product({
-    id: "c1",
-    name: "Classic Latte",
-    category: "Coffee",
-    description: "Rich espresso with steamed milk and a light layer of foam.",
-    price: 4.50,
-    image: "coffee (1)",
-    rating: 4.8,
-    stock: 12
-});
