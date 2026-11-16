@@ -1,6 +1,6 @@
 export const buildCartItemsGrid = (cartItems) => {
     let cartItemsGrid = ``;
-    for (let i = 0; i < cartItems.length; i ++) {
+    for (let i = 0; i < cartItems.length; i++) {
         cartItemsGrid += `
             <article class="cart-item">
                 <img
@@ -27,5 +27,6 @@ export const buildCartItemsGrid = (cartItems) => {
     }
     document.getElementById("cart-items").innerHTML = cartItemsGrid;
     document.getElementById("cart-count").innerHTML = cartItems.length;
-    document.getElementById("cart-count-letter").innerHTML = cartItems.length === 1 ? "item in your cart" : "items in your cart";
-}
+    document.getElementById("cart-count-letter").innerHTML =
+        cartItems.length === 1 ? "item in your cart" : "items in your cart";
+};

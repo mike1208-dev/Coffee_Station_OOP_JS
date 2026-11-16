@@ -1,7 +1,7 @@
 export const buildProductGrid = (products) => {
     let productGrid = ``;
-    
-    for (let i = 0; i < products.length; i ++) {
+
+    for (let i = 0; i < products.length; i++) {
         productGrid += `
             <article class="product-card">
                 <div class="product-image">
@@ -32,5 +32,4 @@ export const buildProductGrid = (products) => {
     }
 
     document.getElementById("product-grid").innerHTML = productGrid;
-
-}
+};

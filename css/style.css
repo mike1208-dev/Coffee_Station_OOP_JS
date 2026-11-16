@@ -1,4 +1,3 @@
-
 /* ========================================
    1. GLOBAL STYLES
 ======================================== */
@@ -10,17 +9,17 @@
 }
 
 :root {
-    --primary: #49372E;
-    --primary-light: #765B45;
-    --background: #F7F3ED;
-    --surface: #FFFFFF;
-    --surface-secondary: #F2E8DC;
-    --border: #E6DDD2;
+    --primary: #49372e;
+    --primary-light: #765b45;
+    --background: #f7f3ed;
+    --surface: #ffffff;
+    --surface-secondary: #f2e8dc;
+    --border: #e6ddd2;
     --text: #302820;
-    --text-light: #897D71;
-    --success: #54865A;
-    --danger: #B85C4B;
-    --discount: #B85C4B;
+    --text-light: #897d71;
+    --success: #54865a;
+    --danger: #b85c4b;
+    --discount: #b85c4b;
 }
 
 body {
@@ -46,7 +45,6 @@ img {
     object-fit: cover;
 }
 
-
 /* ========================================
    2. MAIN SHOP CONTAINER
 ======================================== */
@@ -56,7 +54,6 @@ img {
     margin: 0 auto;
     padding: 30px;
 }
-
 
 /* ========================================
    3. CATEGORY NAVIGATION
@@ -107,7 +104,6 @@ img {
     color: white;
 }
 
-
 /* ========================================
    4. MAIN SHOP CONTENT
 ======================================== */
@@ -118,7 +114,6 @@ img {
     gap: 25px;
     align-items: start;
 }
-
 
 /* ========================================
    5. PRODUCT BOARD
@@ -169,17 +164,15 @@ img {
     cursor: pointer;
 }
 
-
 /* ========================================
    6. PRODUCT GRID
 ======================================== */
 
 .product-grid {
-     display: grid;
+    display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 16px;
 }
-
 
 /* ========================================
    7. PRODUCT CARD
@@ -190,13 +183,14 @@ img {
     border: 1px solid var(--border);
     border-radius: 14px;
     overflow: hidden;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
 }
 .product-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 8px 22px rgba(73, 55, 46, 0.10);
+    box-shadow: 0 8px 22px rgba(73, 55, 46, 0.1);
 }
-
 
 /* Product Image */
 
@@ -217,7 +211,6 @@ img {
     transform: scale(1.05);
 }
 
-
 /* Discount Badge */
 
 .discount-badge {
@@ -231,7 +224,6 @@ img {
     padding: 6px 10px;
     border-radius: 20px;
 }
-
 
 /* Product Information */
 
@@ -253,7 +245,7 @@ img {
 }
 
 .product-rating {
-    color: #D69B35;
+    color: #d69b35;
     font-size: 13px;
     font-weight: 600;
     white-space: nowrap;
@@ -266,7 +258,6 @@ img {
     min-height: 42px;
     margin-bottom: 12px;
 }
-
 
 /* Product Price */
 
@@ -289,7 +280,6 @@ img {
     text-decoration: line-through;
 }
 
-
 /* Add to Cart Button */
 
 .add-to-cart-btn {
@@ -311,7 +301,6 @@ img {
     font-size: 18px;
     margin-right: 5px;
 }
-
 
 /* ========================================
    8. CART SIDEBAR
@@ -356,7 +345,6 @@ img {
     font-size: 25px;
 }
 
-
 /* ========================================
    9. CART ITEMS
 ======================================== */
@@ -399,7 +387,6 @@ img {
     margin-bottom: 9px;
 }
 
-
 /* Quantity Controls */
 
 .cart-item-controls {
@@ -438,7 +425,6 @@ img {
     font-weight: 600;
 }
 
-
 /* Remove Button */
 
 .remove-item-btn {
@@ -452,7 +438,6 @@ img {
     text-decoration: underline;
 }
 
-
 /* Item Subtotal */
 
 .cart-item-subtotal {
@@ -463,7 +448,6 @@ img {
     color: var(--primary);
     margin-top: -7px;
 }
-
 
 /* ========================================
    10. CART SUMMARY
@@ -504,7 +488,6 @@ img {
     font-size: 21px;
 }
 
-
 /* Checkout Button */
 
 .checkout-btn {
@@ -530,7 +513,6 @@ img {
     margin-top: 12px;
 }
 
-
 /* ========================================
    11. RESPONSIVE DESIGN
 ======================================== */
@@ -538,7 +520,6 @@ img {
 /* Tablets */
 
 @media (max-width: 1100px) {
-
     .shop-content {
         grid-template-columns: minmax(0, 1fr) 320px;
         gap: 18px;
@@ -561,11 +542,9 @@ img {
     }
 }
 
-
 /* Small Tablets */
 
 @media (max-width: 800px) {
-
     .shop-content {
         grid-template-columns: 1fr;
     }
@@ -580,11 +559,9 @@ img {
     }
 }
 
-
 /* Mobile */
 
 @media (max-width: 500px) {
-
     .shop-container {
         padding: 12px;
     }
@@ -630,5 +607,4 @@ img {
     .cart-sidebar {
         padding: 18px;
     }
-
 }

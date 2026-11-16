@@ -13,21 +13,18 @@ const sortSelect = document.getElementById("sort-products");
 let activeCategory = "All";
 
 const renderProducts = () => {
-
-    category.sortBy(sortSelect.value)
+    category.sortBy(sortSelect.value);
 
     const products = category.filterByCategory(activeCategory);
 
     buildProductGrid(products);
 };
 
-buttons.forEach(button => {
-
+buttons.forEach((button) => {
     button.addEventListener("click", () => {
-
         activeCategory = button.dataset.category;
 
-        buttons.forEach(btn => {
+        buttons.forEach((btn) => {
             btn.classList.remove("active");
         });
 
@@ -35,7 +32,6 @@ buttons.forEach(button => {
 
         renderProducts();
     });
-
 });
 
 sortSelect.addEventListener("change", () => {
@@ -43,7 +39,6 @@ sortSelect.addEventListener("change", () => {
 });
 
 renderProducts();
-
 
 // Cart Management
 
@@ -63,7 +58,9 @@ const productGrid = document.getElementById("product-grid");
 
 productGrid.addEventListener("click", (event) => {
     const button = event.target.closest(".add-to-cart-btn");
-    if (!button) {return;}
+    if (!button) {
+        return;
+    }
 
     if (!cart.addItem(category.findById(button.dataset.id))) {
         alert("Not enough stock!");
@@ -79,11 +76,10 @@ cartItems.addEventListener("click", (event) => {
     if (removeBtn) {
         cart.removeItem(removeBtn.dataset.id);
     } else if (ctrlBtn) {
-        if(!cart.changeQuantity(ctrlBtn.dataset.id, ctrlBtn.dataset.action)) {
+        if (!cart.changeQuantity(ctrlBtn.dataset.id, ctrlBtn.dataset.action)) {
             alert("Not enough stock!");
         }
     }
-    
-    renderCart();
 
+    renderCart();
 });
