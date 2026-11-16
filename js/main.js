@@ -71,7 +71,9 @@ productGrid.addEventListener("click", (event) => {
     const button = event.target.closest(".add-to-cart-btn");
     if (!button) return;
 
-    cart.addItem(category.findById(button.dataset.id));
+    if (!cart.addItem(category.findById(button.dataset.id))) {
+        alert("Not enough stock!");
+    }
     renderCart();
 });
 
@@ -83,7 +85,9 @@ cartItems.addEventListener("click", (event) => {
     if (removeBtn) {
         cart.removeItem(removeBtn.dataset.id);
     } else if (ctrlBtn) {
-        cart.changeQuantity(ctrlBtn.dataset.id, ctrlBtn.dataset.action);
+        if(!cart.changeQuantity(ctrlBtn.dataset.id, ctrlBtn.dataset.action)) {
+            alert("Not enough stock!");
+        }
     }
     
     renderCart();

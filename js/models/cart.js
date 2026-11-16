@@ -20,7 +20,13 @@ export class Cart {
         const index = this.findIndexById(product.id);
         const quantityInCart = index === -1 ? 0 : this.#cartItems[index].quantity;
 
-        if (quantityInCart >= product.stock) return false;
+        if (product.stock === 0) {
+            return false;
+        }
+
+        if (quantityInCart >= product.stock) {
+            return false;
+        }
 
         if (index === -1) {
             this.#cartItems.push(new CartItem({
@@ -55,7 +61,6 @@ export class Cart {
 
         if (action === "increase") {
             if (item.quantity >= item.stock) {
-                alert("The stock is limit!");
                 return false;
             }
             item.increase();
