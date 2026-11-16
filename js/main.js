@@ -18,11 +18,7 @@ const renderProducts = () => {
         ? category.sortBy(sortSelect.value)
         : category.products;
 
-    if (activeCategory !== "All") {
-        products = products.filter(
-            product => product.category === activeCategory
-        );
-    }
+    products = category.filterByCategory(activeCategory);
 
     buildProductGrid(products);
 };
