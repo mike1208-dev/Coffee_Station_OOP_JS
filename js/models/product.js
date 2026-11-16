@@ -29,12 +29,12 @@ export class Product {
     get stock () { return this.#stock; }
 
     isTopSelling () {
-        if (this.rating >= 4.9) return true;
+        if (this.rating >= 4.9) {return true;}
         return false;
     }
 
     checkStock () {
-        if (this.stock > 0) return true;
+        if (this.stock > 0) {return true;}
         return false;
     }
 

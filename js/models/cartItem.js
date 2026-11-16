@@ -26,10 +26,10 @@ export class CartItem {
     get stock () { return this.#stock; }
     
     calcDiscount () {
-        if (this.#quantity <= 5) return 1;
-        if (this.#quantity <= 10) return 0.9;
-        if (this.#quantity <= 15) return 0.8;
-        if (this.#quantity <= 20) return 0.7;
+        if (this.#quantity <= 5) {return 1;}
+        if (this.#quantity <= 10) {return 0.9;}
+        if (this.#quantity <= 15) {return 0.8;}
+        if (this.#quantity <= 20) {return 0.7;}
         return 0.6;
     }
     

@@ -63,7 +63,7 @@ const productGrid = document.getElementById("product-grid");
 
 productGrid.addEventListener("click", (event) => {
     const button = event.target.closest(".add-to-cart-btn");
-    if (!button) return;
+    if (!button) {return;}
 
     if (!cart.addItem(category.findById(button.dataset.id))) {
         alert("Not enough stock!");

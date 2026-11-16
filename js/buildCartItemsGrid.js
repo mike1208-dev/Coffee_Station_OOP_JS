@@ -27,5 +27,5 @@ export const buildCartItemsGrid = (cartItems) => {
     }
     document.getElementById("cart-items").innerHTML = cartItemsGrid;
     document.getElementById("cart-count").innerHTML = cartItems.length;
-    document.getElementById("cart-count-letter").innerHTML = cartItems.length == 1 ? "item in your cart" : "items in your cart";
+    document.getElementById("cart-count-letter").innerHTML = cartItems.length === 1 ? "item in your cart" : "items in your cart";
 }

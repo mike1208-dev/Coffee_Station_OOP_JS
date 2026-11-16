@@ -55,7 +55,7 @@ export class Cart {
 
     changeQuantity (id, action) {
         const index = this.findIndexById(id);
-        if (index === -1) return false;
+        if (index === -1) {return false;}
 
         const item = this.#cartItems[index];
 
