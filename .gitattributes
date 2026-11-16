@@ -1,0 +1,4 @@
+# Keep LF in every checkout, even on Windows with core.autocrlf=true,
+# so Prettier and .editorconfig agree with the files on disk.
+* text=auto eol=lf
+*.avif binary
