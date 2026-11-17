@@ -104,3 +104,8 @@ test("throws when stock is not a whole number", () => {
 test("negative stock says Stock cannot be negative", () => {
     assert.throws(() => makeProduct({ stock: -1 }), /Stock cannot be negative/);
 });
+
+test("throws when rating is not a number", () => {
+    assert.throws(() => makeProduct({ rating: NaN }), /Rating must be a number/);
+    assert.throws(() => makeProduct({ rating: "abc" }), /Rating must be a number/);
+});
