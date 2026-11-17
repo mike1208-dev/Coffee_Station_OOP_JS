@@ -56,7 +56,7 @@ Any other local web server works too.
 
 ## Tests and code checks
 
-You need [Node.js](https://nodejs.org) 20.19 or newer.
+You need [Node.js](https://nodejs.org) 20.19, 22.13, or 24 and newer. Node 21 and 22.0 to 22.12 do not work with the linter.
 
 ```
 npm install        # once, to download the tools
