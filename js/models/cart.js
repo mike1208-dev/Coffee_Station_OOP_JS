@@ -64,10 +64,7 @@ export class Cart {
         const item = this.#cartItems[index];
 
         if (action === "increase") {
-            if (item.quantity >= item.stock) {
-                return false;
-            }
-            item.increase();
+            return item.increase();
         } else if (item.quantity === 1) {
             this.removeItem(id);
         } else {
