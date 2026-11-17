@@ -64,3 +64,7 @@ test("throws when price is 31", () => {
 test("throws when price is 31", () => {
     assert.throws(() => makeItem({ quantity: 31 }), /Quantity cannot be more than stock/);
 });
+
+test("quantity equal to stock is allowed", () => {
+    assert.doesNotThrow(() => makeItem({ quantity: 1, stock: 1 }));
+});
