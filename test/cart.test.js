@@ -1,0 +1,117 @@
+import { test } from "node:test";
+import assert from "node:assert/strict";
+import { Cart } from "../js/models/cart.js";
+
+const makeProduct = (changes) => ({
+    id: "c1",
+    name: "Latte",
+    price: 10,
+    image: "x.avif",
+    stock: 3,
+    ...changes,
+});
+
+test("addItem puts a new product in the cart with quantity 1", () => {
+    const cart = new Cart();
+
+    cart.addItem(makeProduct());
+
+    assert.equal(cart.cartItems.length, 1);
+    assert.equal(cart.cartItems[0].quantity, 1);
+});
+
+test("addItem twice increases quantity instead of adding a new row", () => {
+    const cart = new Cart();
+
+    cart.addItem(makeProduct());
+    cart.addItem(makeProduct());
+
+    assert.equal(cart.cartItems.length, 1);
+    assert.equal(cart.cartItems[0].quantity, 2);
+});
+
+test("addItem returns false at the stock limit", () => {
+    const cart = new Cart();
+
+    cart.addItem(makeProduct());
+    cart.addItem(makeProduct());
+    cart.addItem(makeProduct());
+
+    assert.equal(cart.cartItems[0].quantity, 3);
+    assert.equal(cart.addItem(makeProduct()), false);
+});
+
+test("addItem returns false when stock is 0", () => {
+    const cart = new Cart();
+
+    assert.equal(cart.cartItems.length, 0);
+    assert.equal(cart.addItem(makeProduct({ stock: 0 })), false);
+});
+
+test("removeItem removes the item and returns true", () => {
+    const cart = new Cart();
+
+    cart.addItem(makeProduct());
+
+    assert.equal(cart.removeItem(cart.cartItems[0].id), true);
+    assert.equal(cart.cartItems.length, 0);
+});
+
+test("removeItem returns false for an unknown id", () => {
+    const cart = new Cart();
+
+    cart.addItem(makeProduct());
+
+    assert.equal(cart.removeItem("unknown"), false);
+    assert.equal(cart.cartItems.length, 1);
+});
+
+test("changeQuantity increase adds 1", () => {
+    const cart = new Cart();
+
+    cart.addItem(makeProduct());
+    cart.changeQuantity("c1", "increase");
+
+    assert.equal(cart.cartItems[0].quantity, 2);
+});
+
+test("changeQuantity increase stops at stock", () => {
+    const cart = new Cart();
+
+    cart.addItem(makeProduct());
+    cart.changeQuantity("c1", "increase");
+    cart.changeQuantity("c1", "increase");
+
+    assert.equal(cart.changeQuantity("c1", "increase"), false);
+    assert.equal(cart.cartItems[0].quantity, 3);
+});
+
+test("changeQuantity decrease at quantity 1 removes the item", () => {
+    const cart = new Cart();
+
+    cart.addItem(makeProduct());
+    cart.changeQuantity("c1", "decrease");
+
+    assert.equal(cart.cartItems.length, 0);
+});
+
+test("getTotal adds up all items", () => {
+    const cart = new Cart();
+
+    cart.addItem(makeProduct({ id: "a", price: 10 }));
+    cart.addItem(makeProduct({ id: "a", price: 10 }));
+    cart.addItem(makeProduct({ id: "b", price: 5 }));
+
+    assert.equal(cart.getTotal(), 25);
+});
+
+test("getTotalWithDiscount applies the discount tier", () => {
+    const cart = new Cart();
+    const product = makeProduct({ stock: 10 });
+
+    for (let i = 0; i < 6; i++) {
+        cart.addItem(product);
+    }
+
+    assert.equal(cart.getTotalWithDiscount(), 54);
+});
