@@ -96,3 +96,16 @@ test("decrease takes one off and returns true above 1", () => {
     assert.equal(item.decrease(), true);
     assert.equal(item.quantity, 1);
 });
+
+test("throws when quantity is not a whole number", () => {
+    assert.throws(() => makeItem({ quantity: 1.5 }), /Quantity must be a whole number/);
+});
+
+test("throws when price is not a number", () => {
+    assert.throws(() => makeItem({ price: "abc" }), /Price must be a number/);
+});
+
+test("throws when id or name is empty", () => {
+    assert.throws(() => makeItem({ id: "" }), /Id must not be empty/);
+    assert.throws(() => makeItem({ name: "" }), /Name must not be empty/);
+});

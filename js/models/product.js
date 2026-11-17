@@ -1,3 +1,5 @@
+import { requireNumber, requireText, requireWholeNumber } from "../validators.js"; 
+
 export class Product {
     #id;
     #name;
@@ -10,11 +12,19 @@ export class Product {
 
     // constructor
     constructor({ id, name, category, description, price, image, rating, stock }) {
+        requireText(id, "Id");
+        requireText(name, "Name");
+        requireNumber(price, "Price");
         if (price <= 0) {
             throw new Error("Price must be greater than zero.");
         }
+        requireNumber(rating, "Rating");
+        if (rating < 0 || rating > 5) {
+            throw new Error("Rating must be between 0 and 5.");
+        }
+        requireWholeNumber(stock, "Stock");
         if (stock < 0) {
-            throw new Error("Storae must be greater than zero.");
+            throw new Error("Stock cannot be negative.");
         }
 
         this.#id = id;
