@@ -14,8 +14,9 @@ const makeProduct = (changes) => ({
 test("addItem puts a new product in the cart with quantity 1", () => {
     const cart = new Cart();
 
-    cart.addItem(makeProduct());
+    const result = cart.addItem(makeProduct());
 
+    assert.equal(result, true);
     assert.equal(cart.cartItems.length, 1);
     assert.equal(cart.cartItems[0].quantity, 1);
 });
@@ -70,8 +71,9 @@ test("changeQuantity increase adds 1", () => {
     const cart = new Cart();
 
     cart.addItem(makeProduct());
-    cart.changeQuantity("c1", "increase");
+    const result = cart.changeQuantity("c1", "increase");
 
+    assert.equal(result, true);
     assert.equal(cart.cartItems[0].quantity, 2);
 });
 
@@ -90,9 +92,22 @@ test("changeQuantity decrease at quantity 1 removes the item", () => {
     const cart = new Cart();
 
     cart.addItem(makeProduct());
-    cart.changeQuantity("c1", "decrease");
+    const result = cart.changeQuantity("c1", "decrease");
 
+    assert.equal(result, true);
     assert.equal(cart.cartItems.length, 0);
+});
+
+test("changeQuantity decrease subtracts 1", () => {
+    const cart = new Cart();
+
+    cart.addItem(makeProduct());
+    cart.addItem(makeProduct());
+    const result = cart.changeQuantity("c1", "decrease");
+
+    assert.equal(result, true);
+    assert.equal(cart.cartItems.length, 1);
+    assert.equal(cart.cartItems[0].quantity, 1);
 });
 
 test("getTotal adds up all items", () => {
