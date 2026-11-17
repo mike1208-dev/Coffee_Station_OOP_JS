@@ -82,3 +82,17 @@ test("decrease stops at 1 and returns false", () => {
     assert.equal(item.decrease(), false);
     assert.equal(item.quantity, 1);
 });
+
+test("increase adds one and returns true below the stock", () => {
+    const item = makeItem({ quantity: 1, stock: 2 });
+
+    assert.equal(item.increase(), true);
+    assert.equal(item.quantity, 2);
+});
+
+test("decrease takes one off and returns true above 1", () => {
+    const item = makeItem({ quantity: 2 });
+
+    assert.equal(item.decrease(), true);
+    assert.equal(item.quantity, 1);
+});
