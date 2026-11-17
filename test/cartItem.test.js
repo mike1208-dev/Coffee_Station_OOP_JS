@@ -68,3 +68,17 @@ test("throws when quantity is more than stock", () => {
 test("quantity equal to stock is allowed", () => {
     assert.doesNotThrow(() => makeItem({ quantity: 1, stock: 1 }));
 });
+
+test("increase stops at the stock and returns false", () => {
+    const item = makeItem({ quantity: 2, stock: 2 });
+
+    assert.equal(item.increase(), false);
+    assert.equal(item.quantity, 2);
+});
+
+test("decrease stops at 1 and returns false", () => {
+    const item = makeItem({ quantity: 1 });
+
+    assert.equal(item.decrease(), false);
+    assert.equal(item.quantity, 1);
+});

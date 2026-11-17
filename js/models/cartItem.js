@@ -63,11 +63,19 @@ export class CartItem {
     }
 
     increase() {
+        if (this.#quantity >= this.#stock) {
+            return false;
+        }
         this.#quantity++;
+        return true;
     }
 
     decrease() {
+        if (this.#quantity <= 1) {
+            return false;
+        }
         this.#quantity--;
+        return true;
     }
 
     getSubTotal() {
