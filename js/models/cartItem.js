@@ -1,3 +1,5 @@
+import { requireNumber, requireText, requireWholeNumber } from "../validators.js";
+
 export class CartItem {
     #id;
     #name;
@@ -8,9 +10,14 @@ export class CartItem {
 
     // constructor
     constructor({ id, name, price, image, quantity, stock }) {
+        requireText(id, "Id");
+        requireText(name, "Name");
+        requireNumber(price, "Price");
         if (price <= 0) {
             throw new Error("Price must be greater than zero.");
         }
+        requireWholeNumber(quantity, "Quantity");
+        requireWholeNumber(stock, "Stock");
         if (quantity <= 0) {
             throw new Error("Quantity must be greater than zero.");
         }

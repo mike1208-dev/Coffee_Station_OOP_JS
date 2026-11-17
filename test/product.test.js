@@ -76,3 +76,36 @@ test("Coffee keeps temperature and origin and is a Product", () => {
     assert.equal(coffee.price, 4.5);
     assert.equal(coffee instanceof Product, true);
 });
+
+test("throws when price is not a number", () => {
+    assert.throws(() => makeProduct({ price: NaN }), /Price must be a number/);
+    assert.throws(() => makeProduct({ price: "abc" }), /Price must be a number/);
+});
+
+test("throws when rating is outside 0 to 5", () => {
+    assert.throws(() => makeProduct({ rating: 99 }), /Rating must be between 0 and 5/);
+    assert.throws(() => makeProduct({ rating: -1 }), /Rating must be between 0 and 5/);
+});
+
+test("rating 0 and 5 are allowed", () => {
+    assert.doesNotThrow(() => makeProduct({ rating: 0 }));
+    assert.doesNotThrow(() => makeProduct({ rating: 5 }));
+});
+
+test("throws when id or name is empty", () => {
+    assert.throws(() => makeProduct({ id: "" }), /Id must not be empty/);
+    assert.throws(() => makeProduct({ name: "  " }), /Name must not be empty/);
+});
+
+test("throws when stock is not a whole number", () => {
+    assert.throws(() => makeProduct({ stock: 1.5 }), /Stock must be a whole number/);
+});
+
+test("negative stock says Stock cannot be negative", () => {
+    assert.throws(() => makeProduct({ stock: -1 }), /Stock cannot be negative/);
+});
+
+test("throws when rating is not a number", () => {
+    assert.throws(() => makeProduct({ rating: NaN }), /Rating must be a number/);
+    assert.throws(() => makeProduct({ rating: "abc" }), /Rating must be a number/);
+});
