@@ -109,3 +109,7 @@ test("throws when id or name is empty", () => {
     assert.throws(() => makeItem({ id: "" }), /Id must not be empty/);
     assert.throws(() => makeItem({ name: "" }), /Name must not be empty/);
 });
+
+test("throws when stock is not a whole number", () => {
+    assert.throws(() => makeItem({ stock: 1.5 }), /Stock must be a whole number/);
+});
