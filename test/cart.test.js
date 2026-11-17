@@ -37,16 +37,19 @@ test("addItem returns false at the stock limit", () => {
     cart.addItem(makeProduct());
     cart.addItem(makeProduct());
     cart.addItem(makeProduct());
+    const result = cart.addItem(makeProduct());
 
+    assert.equal(result, false);
     assert.equal(cart.cartItems[0].quantity, 3);
-    assert.equal(cart.addItem(makeProduct()), false);
 });
 
 test("addItem returns false when stock is 0", () => {
     const cart = new Cart();
 
+    const result = cart.addItem(makeProduct({ stock: 0 }));
+
+    assert.equal(result, false);
     assert.equal(cart.cartItems.length, 0);
-    assert.equal(cart.addItem(makeProduct({ stock: 0 })), false);
 });
 
 test("removeItem removes the item and returns true", () => {
@@ -107,6 +110,16 @@ test("changeQuantity decrease subtracts 1", () => {
 
     assert.equal(result, true);
     assert.equal(cart.cartItems.length, 1);
+    assert.equal(cart.cartItems[0].quantity, 1);
+});
+
+test("changeQuantity returns false for an unknown id", () => {
+    const cart = new Cart();
+
+    cart.addItem(makeProduct());
+    const result = cart.changeQuantity("unknown", "increase");
+
+    assert.equal(result, false);
     assert.equal(cart.cartItems[0].quantity, 1);
 });
 
