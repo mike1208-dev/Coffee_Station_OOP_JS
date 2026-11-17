@@ -1,4 +1,4 @@
-import { requireNumber, requireText, requireWholeNumber } from "../validators.js"; 
+import { requireNumber, requireText, requireWholeNumber } from "../validators.js";
 
 export class Product {
     #id;
