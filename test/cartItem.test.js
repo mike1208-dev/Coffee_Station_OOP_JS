@@ -57,11 +57,11 @@ test("throws when price is 0", () => {
     assert.throws(() => makeItem({ price: 0 }), /Price must be greater than zero/);
 });
 
-test("throws when price is 31", () => {
+test("throws when quantity is 0", () => {
     assert.throws(() => makeItem({ quantity: 0 }), /Quantity must be greater than zero/);
 });
 
-test("throws when price is 31", () => {
+test("throws when quantity is more than stock", () => {
     assert.throws(() => makeItem({ quantity: 31 }), /Quantity cannot be more than stock/);
 });
 
