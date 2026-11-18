@@ -57,17 +57,25 @@ export class Cart {
 
     increase(id) {
         const index = this.findIndexById(id);
-        if (index === - 1) return false;
+        if (index === -1) {
+            return false;
+        }
         const item = this.#cartItems[index];
         return item.increase();
     }
-    
+
     decrease(id) {
         const index = this.findIndexById(id);
-        if (index === - 1) return false;
+        if (index === -1) {
+            return false;
+        }
         const item = this.#cartItems[index];
-        if (item.quantity === 1) this.removeItem(id);
-        else item.decrease();
+        if (item.quantity === 1) {
+            this.removeItem(id);
+        }
+        else {
+            item.decrease();
+        }
         return true;
     }
 

@@ -78,10 +78,14 @@ cartItems.addEventListener("click", (event) => {
     } else if (ctrlBtn) {
         if (ctrlBtn.dataset.action === "increase") {
             const result = cart.increase(ctrlBtn.dataset.id);
-            if (result === false) alert("Not enough stock!");
+            if (result === false) {
+                alert("Not enough stock!");
+            }
         } else {
             const result = cart.decrease(ctrlBtn.dataset.id);
-            if (result === false) alert("Not enough stock!");
+            if (result === false) {
+                alert("Not enough stock!");
+            }
         }
     }
 
