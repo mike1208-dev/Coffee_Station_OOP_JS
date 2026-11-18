@@ -4,19 +4,8 @@ export class Coffee extends Product {
     #temperature; // ice or hot
     #origin; // Ethiopia, Colombia, Brazil
 
-    constructor({
-        id,
-        name,
-        category,
-        description,
-        price,
-        image,
-        rating,
-        stock,
-        temperature,
-        origin,
-    }) {
-        super({ id, name, category, description, price, image, rating, stock });
+    constructor({ temperature, origin, ...product }) {
+        super(product);
 
         this.#temperature = temperature;
         this.#origin = origin;
