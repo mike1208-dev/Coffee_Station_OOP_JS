@@ -67,26 +67,22 @@ export class Cart {
         const item = this.#cartItems[index];
         if (item.quantity === 1) {
             this.removeItem(id);
-        }
-        else {
+        } else {
             item.decrease();
         }
         return true;
     }
 
     getTotal() {
-        let totalPrice = 0;
-        for (let i = 0; i < this.#cartItems.length; i++) {
-            totalPrice += this.#cartItems[i].getSubTotal();
-        }
+        const totalPrice = this.#cartItems.reduce((sum, item) => sum + item.getSubTotal(), 0);
         return Math.round(totalPrice * 100) / 100;
     }
 
     getTotalWithDiscount() {
-        let totalPrice = 0;
-        for (let i = 0; i < this.#cartItems.length; i++) {
-            totalPrice += this.#cartItems[i].getSubTotalWithDiscount();
-        }
+        const totalPrice = this.#cartItems.reduce(
+            (sum, item) => sum + item.getSubTotalWithDiscount(),
+            0
+        );
         return Math.round(totalPrice * 100) / 100;
     }
 }
