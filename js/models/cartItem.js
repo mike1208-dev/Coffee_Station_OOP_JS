@@ -1,5 +1,13 @@
 import { requireNumber, requireText, requireWholeNumber } from "../validators.js";
 
+const DISCOUNT_TIERS = [
+    { max: 5, rate: 1 },
+    { max: 10, rate: 0.9 },
+    { max: 15, rate: 0.8 },
+    { max: 20, rate: 0.7 },
+    { max: Infinity, rate: 0.6 },
+];
+
 export class CartItem {
     #id;
     #name;
@@ -54,19 +62,8 @@ export class CartItem {
     }
 
     calcDiscount() {
-        if (this.#quantity <= 5) {
-            return 1;
-        }
-        if (this.#quantity <= 10) {
-            return 0.9;
-        }
-        if (this.#quantity <= 15) {
-            return 0.8;
-        }
-        if (this.#quantity <= 20) {
-            return 0.7;
-        }
-        return 0.6;
+        const tier = DISCOUNT_TIERS.find((t) => this.#quantity <= t.max);
+        return tier.rate;
     }
 
     increase() {
@@ -90,6 +87,6 @@ export class CartItem {
     }
 
     getSubTotalWithDiscount() {
-        return this.#price * this.#quantity * this.calcDiscount();
+        return this.getSubTotal() * this.calcDiscount();
     }
 }

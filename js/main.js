@@ -76,8 +76,13 @@ cartItems.addEventListener("click", (event) => {
     if (removeBtn) {
         cart.removeItem(removeBtn.dataset.id);
     } else if (ctrlBtn) {
-        if (!cart.changeQuantity(ctrlBtn.dataset.id, ctrlBtn.dataset.action)) {
-            alert("Not enough stock!");
+        if (ctrlBtn.dataset.action === "increase") {
+            const result = cart.increase(ctrlBtn.dataset.id);
+            if (result === false) {
+                alert("Not enough stock!");
+            }
+        } else {
+            cart.decrease(ctrlBtn.dataset.id);
         }
     }
 

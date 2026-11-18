@@ -8,21 +8,12 @@ export class Cart {
     }
 
     findIndexById(id) {
-        for (let i = 0; i < this.#cartItems.length; i++) {
-            if (this.#cartItems[i].id === id) {
-                return i;
-            }
-        }
-        return -1;
+        return this.#cartItems.findIndex((item) => item.id === id);
     }
 
     addItem(product) {
         const index = this.findIndexById(product.id);
         const quantityInCart = index === -1 ? 0 : this.#cartItems[index].quantity;
-
-        if (product.stock === 0) {
-            return false;
-        }
 
         if (quantityInCart >= product.stock) {
             return false;
@@ -55,17 +46,22 @@ export class Cart {
         return [...this.#cartItems];
     }
 
-    changeQuantity(id, action) {
+    increase(id) {
         const index = this.findIndexById(id);
         if (index === -1) {
             return false;
         }
-
         const item = this.#cartItems[index];
+        return item.increase();
+    }
 
-        if (action === "increase") {
-            return item.increase();
-        } else if (item.quantity === 1) {
+    decrease(id) {
+        const index = this.findIndexById(id);
+        if (index === -1) {
+            return false;
+        }
+        const item = this.#cartItems[index];
+        if (item.quantity === 1) {
             this.removeItem(id);
         } else {
             item.decrease();
@@ -74,18 +70,15 @@ export class Cart {
     }
 
     getTotal() {
-        let totalPrice = 0;
-        for (let i = 0; i < this.#cartItems.length; i++) {
-            totalPrice += this.#cartItems[i].getSubTotal();
-        }
+        const totalPrice = this.#cartItems.reduce((sum, item) => sum + item.getSubTotal(), 0);
         return Math.round(totalPrice * 100) / 100;
     }
 
     getTotalWithDiscount() {
-        let totalPrice = 0;
-        for (let i = 0; i < this.#cartItems.length; i++) {
-            totalPrice += this.#cartItems[i].getSubTotalWithDiscount();
-        }
+        const totalPrice = this.#cartItems.reduce(
+            (sum, item) => sum + item.getSubTotalWithDiscount(),
+            0
+        );
         return Math.round(totalPrice * 100) / 100;
     }
 }
