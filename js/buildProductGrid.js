@@ -30,7 +30,6 @@ export const buildProductGrid = (products) => {
                         data-id="${products[i].id}"
                         aria-label="Add to Cart: ${products[i].name}"
                     >
-
                         <span>+</span> Add to Cart
                     </button>
                 </div>
