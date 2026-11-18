@@ -34,6 +34,7 @@ test("buildProductGrid shows name and description as plain text", (t) => {
     assert.ok(!page.innerHTML.includes(evilText));
     assert.ok(page.innerHTML.includes("&lt;b&gt;Test&lt;/b&gt;"));
     assert.ok(page.innerHTML.includes('data-id="c&quot;1"'));
+    assert.ok(!page.innerHTML.includes('x".avif'));
 });
 
 test("buildCartItemsGrid shows name as plain text", (t) => {
@@ -52,4 +53,6 @@ test("buildCartItemsGrid shows name as plain text", (t) => {
     assert.ok(!page.innerHTML.includes(evilName));
     assert.ok(page.innerHTML.includes("&lt;b&gt;Test&lt;/b&gt;"));
     assert.ok(page.innerHTML.includes('data-id="c&quot;1"'));
+    assert.ok(!page.innerHTML.includes('c"1'));
+    assert.ok(!page.innerHTML.includes('x".avif'));
 });

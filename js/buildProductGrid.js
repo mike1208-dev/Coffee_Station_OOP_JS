@@ -8,7 +8,7 @@ export const buildProductGrid = (products) => {
             <article class="product-card">
                 <div class="product-image">
                     <img
-                        src="./assets/images//${escapeHtml(products[i].image)}"
+                        src="./assets/images/${escapeHtml(products[i].image)}"
                         alt="${escapeHtml(products[i].name)}"
                     >
                 </div>
