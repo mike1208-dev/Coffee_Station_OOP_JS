@@ -107,3 +107,15 @@ test("throws for an unknown sort", () => {
 
     assert.throws(() => category.sortBy("name"), /Invalid sorting property/);
 });
+
+test("every product keeps all of its data fields", () => {
+    const category = new Category();
+
+    for (const data of products) {
+        const product = category.findById(data.id);
+
+        for (const [key, value] of Object.entries(data)) {
+            assert.equal(product[key], value, `${data.id} ${key}`);
+        }
+    }
+});
