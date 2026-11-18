@@ -1,3 +1,10 @@
+const setTextIfChanged = (id, text) => {
+    const element = document.getElementById(id);
+    if (element.textContent !== text) {
+        element.textContent = text;
+    }
+};
+
 export const buildCartItemsGrid = (cartItems) => {
     let cartItemsGrid = ``;
     for (let i = 0; i < cartItems.length; i++) {
@@ -31,4 +38,10 @@ export const buildCartItemsGrid = (cartItems) => {
     document.getElementById("cart-count").innerHTML = cartItems.length;
     document.getElementById("cart-count-letter").innerHTML =
         cartItems.length === 1 ? "item in your cart" : "items in your cart";
+    
+    setTextIfChanged("cart-count", String(cartItems.length));
+    setTextIfChanged(
+        "cart-count-letter",
+        cartItems.length === 1 ? "item in your cart" : "items in your cart"
+    );
 };
