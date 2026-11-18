@@ -26,9 +26,11 @@ buttons.forEach((button) => {
 
         buttons.forEach((btn) => {
             btn.classList.remove("active");
+            btn.setAttribute("aria-pressed", "false");
         });
 
         button.classList.add("active");
+        button.setAttribute("aria-pressed", "true");
 
         renderProducts();
     });
@@ -70,6 +72,14 @@ productGrid.addEventListener("click", (event) => {
 
 const cartItems = document.getElementById("cart-items");
 
+const restoreFocus = (usedButton) => {
+    const selector = usedButton.classList.contains("quantity-btn")
+        ? `.quantity-btn[data-action="${usedButton.dataset.action}"][data-id="${usedButton.dataset.id}"]`
+        : `.remove-item-btn[data-id="${usedButton.dataset.id}"]`;
+    const sameButton = cartItems.querySelector(selector) ?? cartItems.querySelector("button");
+    sameButton?.focus();
+};
+
 cartItems.addEventListener("click", (event) => {
     const removeBtn = event.target.closest(".remove-item-btn");
     const ctrlBtn = event.target.closest(".quantity-btn");
@@ -87,4 +97,8 @@ cartItems.addEventListener("click", (event) => {
     }
 
     renderCart();
+
+    if (removeBtn || ctrlBtn) {
+        restoreFocus(removeBtn ?? ctrlBtn);
+    }
 });

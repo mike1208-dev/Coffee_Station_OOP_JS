@@ -154,13 +154,18 @@ img {
     color: var(--text-light);
 }
 
+button:focus-visible,
+select:focus-visible {
+    outline: 3px solid var(--primary-light);
+    outline-offset: 2px;
+}
+
 .sort-container select {
     background-color: var(--surface-secondary);
     border: 1px solid var(--border);
     border-radius: 8px;
     padding: 9px 12px;
     color: var(--primary);
-    outline: none;
     cursor: pointer;
 }
 

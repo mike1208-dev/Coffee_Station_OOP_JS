@@ -1,3 +1,10 @@
+const setTextIfChanged = (id, text) => {
+    const element = document.getElementById(id);
+    if (element.textContent !== text) {
+        element.textContent = text;
+    }
+};
+
 export const buildCartItemsGrid = (cartItems) => {
     let cartItemsGrid = ``;
     for (let i = 0; i < cartItems.length; i++) {
@@ -13,11 +20,18 @@ export const buildCartItemsGrid = (cartItems) => {
                     <p class="cart-item-price">$${cartItems[i].price.toFixed(2)} each</p>
                     <div class="cart-item-controls">
                         <div class="quantity-control">
-                            <button type="button" class="quantity-btn" data-action="decrease" data-id="${cartItems[i].id}">−</button>
+                            <button type="button" class="quantity-btn" data-action="decrease" data-id="${cartItems[i].id}"
+                                aria-label="Decrease ${cartItems[i].name}">−</button>
                             <span class="quantity-value">${cartItems[i].quantity}</span>
-                            <button type="button" class="quantity-btn" data-action="increase" data-id="${cartItems[i].id}">+</button>
+                            <button type="button" class="quantity-btn" data-action="increase" data-id="${cartItems[i].id}"
+                                aria-label="Increase ${cartItems[i].name}">+</button>
                         </div>
-                        <button type="button" class="remove-item-btn" data-id="${cartItems[i].id}">
+                        <button
+                            type="button"
+                            class="remove-item-btn"
+                            data-id="${cartItems[i].id}"
+                            aria-label="Remove ${cartItems[i].name} from cart"
+                        >
                             Remove
                         </button>
                     </div>
@@ -26,7 +40,10 @@ export const buildCartItemsGrid = (cartItems) => {
             </article>`;
     }
     document.getElementById("cart-items").innerHTML = cartItemsGrid;
-    document.getElementById("cart-count").innerHTML = cartItems.length;
-    document.getElementById("cart-count-letter").innerHTML =
-        cartItems.length === 1 ? "item in your cart" : "items in your cart";
+
+    setTextIfChanged("cart-count", String(cartItems.length));
+    setTextIfChanged(
+        "cart-count-letter",
+        cartItems.length === 1 ? "item in your cart" : "items in your cart"
+    );
 };
