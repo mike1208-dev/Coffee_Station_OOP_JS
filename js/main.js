@@ -82,10 +82,7 @@ cartItems.addEventListener("click", (event) => {
                 alert("Not enough stock!");
             }
         } else {
-            const result = cart.decrease(ctrlBtn.dataset.id);
-            if (result === false) {
-                alert("Not enough stock!");
-            }
+            cart.decrease(ctrlBtn.dataset.id);
         }
     }
 
