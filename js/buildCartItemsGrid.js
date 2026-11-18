@@ -40,9 +40,6 @@ export const buildCartItemsGrid = (cartItems) => {
             </article>`;
     }
     document.getElementById("cart-items").innerHTML = cartItemsGrid;
-    document.getElementById("cart-count").innerHTML = cartItems.length;
-    document.getElementById("cart-count-letter").innerHTML =
-        cartItems.length === 1 ? "item in your cart" : "items in your cart";
 
     setTextIfChanged("cart-count", String(cartItems.length));
     setTextIfChanged(
