@@ -15,10 +15,6 @@ export class Cart {
         const index = this.findIndexById(product.id);
         const quantityInCart = index === -1 ? 0 : this.#cartItems[index].quantity;
 
-        if (product.stock === 0) {
-            return false;
-        }
-
         if (quantityInCart >= product.stock) {
             return false;
         }
