@@ -24,7 +24,7 @@ export const buildProductGrid = (products) => {
                         <span class="current-price">Stock: </span>
                         <span class="current-price">${products[i].stock}</span>
                     </div>
-                    <button class="add-to-cart-btn" data-id="${products[i].id}">
+                    <button type="button" class="add-to-cart-btn" data-id="${products[i].id}">
                         <span>+</span> Add to Cart
                     </button>
                 </div>
