@@ -70,54 +70,65 @@ test("removeItem returns false for an unknown id", () => {
     assert.equal(cart.cartItems.length, 1);
 });
 
-test("changeQuantity increase adds 1", () => {
+test("increase adds 1", () => {
     const cart = new Cart();
 
     cart.addItem(makeProduct());
-    const result = cart.changeQuantity("c1", "increase");
+    const result = cart.increase("c1");
 
     assert.equal(result, true);
     assert.equal(cart.cartItems[0].quantity, 2);
 });
 
-test("changeQuantity increase stops at stock", () => {
+test("increase stops at stock", () => {
     const cart = new Cart();
 
     cart.addItem(makeProduct());
-    cart.changeQuantity("c1", "increase");
-    cart.changeQuantity("c1", "increase");
+    cart.increase("c1");
+    cart.increase("c1");
+    const result = cart.increase("c1");
 
-    assert.equal(cart.changeQuantity("c1", "increase"), false);
+    assert.equal(result, false);
     assert.equal(cart.cartItems[0].quantity, 3);
 });
 
-test("changeQuantity decrease at quantity 1 removes the item", () => {
+test("decrease at quantity 1 removes the item", () => {
     const cart = new Cart();
 
     cart.addItem(makeProduct());
-    const result = cart.changeQuantity("c1", "decrease");
+    const result = cart.decrease("c1");
 
     assert.equal(result, true);
     assert.equal(cart.cartItems.length, 0);
 });
 
-test("changeQuantity decrease subtracts 1", () => {
+test("decrease subtracts 1", () => {
     const cart = new Cart();
 
     cart.addItem(makeProduct());
     cart.addItem(makeProduct());
-    const result = cart.changeQuantity("c1", "decrease");
+    const result = cart.decrease("c1");
 
     assert.equal(result, true);
     assert.equal(cart.cartItems.length, 1);
     assert.equal(cart.cartItems[0].quantity, 1);
 });
 
-test("changeQuantity returns false for an unknown id", () => {
+test("increase returns false for an unknown id", () => {
     const cart = new Cart();
 
     cart.addItem(makeProduct());
-    const result = cart.changeQuantity("unknown", "increase");
+    const result = cart.increase("unknown");
+
+    assert.equal(result, false);
+    assert.equal(cart.cartItems[0].quantity, 1);
+});
+
+test("decrease returns false for an unknown id", () => {
+    const cart = new Cart();
+
+    cart.addItem(makeProduct());
+    const result = cart.decrease("unknown");
 
     assert.equal(result, false);
     assert.equal(cart.cartItems[0].quantity, 1);

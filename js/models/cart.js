@@ -55,21 +55,19 @@ export class Cart {
         return [...this.#cartItems];
     }
 
-    changeQuantity(id, action) {
+    increase(id) {
         const index = this.findIndexById(id);
-        if (index === -1) {
-            return false;
-        }
-
+        if (index === - 1) return false;
         const item = this.#cartItems[index];
-
-        if (action === "increase") {
-            return item.increase();
-        } else if (item.quantity === 1) {
-            this.removeItem(id);
-        } else {
-            item.decrease();
-        }
+        return item.increase();
+    }
+    
+    decrease(id) {
+        const index = this.findIndexById(id);
+        if (index === - 1) return false;
+        const item = this.#cartItems[index];
+        if (item.quantity === 1) this.removeItem(id);
+        else item.decrease();
         return true;
     }
 
