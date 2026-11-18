@@ -26,7 +26,12 @@ export const buildCartItemsGrid = (cartItems) => {
                             <button type="button" class="quantity-btn" data-action="increase" data-id="${cartItems[i].id}"
                                 aria-label="Increase ${cartItems[i].name}">+</button>
                         </div>
-                        <button type="button" class="remove-item-btn" data-id="${cartItems[i].id}">
+                        <button
+                            type="button"
+                            class="remove-item-btn"
+                            data-id="${cartItems[i].id}"
+                            aria-label="Remove ${cartItems[i].name} from cart"
+                        >
                             Remove
                         </button>
                     </div>
