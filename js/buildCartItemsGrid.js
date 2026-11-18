@@ -13,9 +13,11 @@ export const buildCartItemsGrid = (cartItems) => {
                     <p class="cart-item-price">$${cartItems[i].price.toFixed(2)} each</p>
                     <div class="cart-item-controls">
                         <div class="quantity-control">
-                            <button type="button" class="quantity-btn" data-action="decrease" data-id="${cartItems[i].id}">−</button>
+                            <button type="button" class="quantity-btn" data-action="decrease" data-id="${cartItems[i].id}"
+                                aria-label="Decrease ${cartItems[i].name}">−</button>
                             <span class="quantity-value">${cartItems[i].quantity}</span>
-                            <button type="button" class="quantity-btn" data-action="increase" data-id="${cartItems[i].id}">+</button>
+                            <button type="button" class="quantity-btn" data-action="increase" data-id="${cartItems[i].id}"
+                                aria-label="Increase ${cartItems[i].name}">+</button>
                         </div>
                         <button type="button" class="remove-item-btn" data-id="${cartItems[i].id}">
                             Remove

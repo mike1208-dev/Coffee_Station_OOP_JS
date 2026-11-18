@@ -26,9 +26,11 @@ buttons.forEach((button) => {
 
         buttons.forEach((btn) => {
             btn.classList.remove("active");
+            btn.setAttribute("aria-pressed", "false");
         });
 
         button.classList.add("active");
+        button.setAttribute("aria-pressed", "true");
 
         renderProducts();
     });

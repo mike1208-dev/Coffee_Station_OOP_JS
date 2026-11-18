@@ -16,19 +16,40 @@
                     <p>Find your favorite products</p>
                 </div>
 
-                <nav class="category-list">
-                    <button type="button" class="category-btn active" data-category="All">
+                <div class="category-list" role="group" aria-label="Product categories">
+                    <button
+                        type="button"
+                        class="category-btn active"
+                        data-category="All"
+                        aria-pressed="true"
+                    >
                         All Products
                     </button>
-
-                    <button type="button" class="category-btn" data-category="Coffee">
+                    <button
+                        type="button"
+                        class="category-btn"
+                        data-category="Coffee"
+                        aria-pressed="false"
+                    >
                         Coffee
                     </button>
-
-                    <button type="button" class="category-btn" data-category="Tea">Tea</button>
-
-                    <button type="button" class="category-btn" data-category="Bread">Bread</button>
-                </nav>
+                    <button
+                        type="button"
+                        class="category-btn"
+                        data-category="Tea"
+                        aria-pressed="false"
+                    >
+                        Tea
+                    </button>
+                    <button
+                        type="button"
+                        class="category-btn"
+                        data-category="Bread"
+                        aria-pressed="false"
+                    >
+                        Bread
+                    </button>
+                </div>
             </section>
 
             <!-- Main Shop Content -->
@@ -63,13 +84,13 @@
                     <div class="cart-header">
                         <div>
                             <h2>Your Cart</h2>
-                            <p>
+                            <p aria-live="polite">
                                 <span class="cart-count" id="cart-count">0</span>
                                 <span id="cart-count-letter">items in your cart</span>
                             </p>
                         </div>
 
-                        <span class="cart-icon">🛒</span>
+                        <span class="cart-icon" aria-hidden="true">🛒</span>
                     </div>
 
                     <!-- Cart Items -->
