@@ -1,7 +1,7 @@
 import { Product } from "./product.js";
 
 export class Tea extends Product {
-    #teaType; // Green, , Herbal
+    #teaType; // Green, Black, Herbal
     #sweetness; // 0%, 25%, 50%, 100%
 
     constructor({ teaType, sweetness, ...product }) {
