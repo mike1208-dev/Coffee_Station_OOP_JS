@@ -8,12 +8,7 @@ export class Cart {
     }
 
     findIndexById(id) {
-        for (let i = 0; i < this.#cartItems.length; i++) {
-            if (this.#cartItems[i].id === id) {
-                return i;
-            }
-        }
-        return -1;
+        return this.#cartItems.findIndex((item) => item.id === id);
     }
 
     addItem(product) {
