@@ -90,6 +90,6 @@ export class CartItem {
     }
 
     getSubTotalWithDiscount() {
-        return this.#price * this.#quantity * this.calcDiscount();
+        return this.getSubTotal() * this.calcDiscount();
     }
 }
