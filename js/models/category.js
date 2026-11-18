@@ -31,10 +31,6 @@ export class Category {
         this.#nowCategory = "All";
     }
 
-    get products() {
-        return [...this.#products];
-    }
-
     findById(id) {
         return this.#allProducts.find((product) => product.id === id);
     }
