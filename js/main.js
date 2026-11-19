@@ -1,6 +1,6 @@
 import { buildProductGrid } from "./buildProductGrid.js";
 import { buildCartItemsGrid } from "./buildCartItemsGrid.js";
-import { Category } from "./models/category.js";
+import { Category, ALL_CATEGORIES } from "./models/category.js";
 import { Cart } from "./models/cart.js";
 
 // Category Management
@@ -10,13 +10,10 @@ const category = new Category();
 const buttons = document.querySelectorAll(".category-btn");
 const sortSelect = document.getElementById("sort-products");
 
-let activeCategory = "All";
+let activeCategory = ALL_CATEGORIES;
 
 const renderProducts = () => {
-    category.sortBy(sortSelect.value);
-
-    const products = category.filterByCategory(activeCategory);
-
+    const products = category.getProducts(activeCategory, sortSelect.value);
     buildProductGrid(products);
 };
 
