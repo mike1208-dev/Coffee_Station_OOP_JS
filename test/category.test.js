@@ -103,3 +103,8 @@ test("getProducts filters and sorts every category with every sort", () => {
         }
     }
 });
+
+test("sort and category names are the values used in index.html", () => {
+    assert.equal(ALL_CATEGORIES, "All");
+    assert.deepEqual(Object.values(SORT), ["default", "price-htl", "price-lth", "rating", "stock"]);
+});
