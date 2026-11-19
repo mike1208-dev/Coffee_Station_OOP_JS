@@ -9,11 +9,20 @@ const productClasses = {
     Bread,
 };
 
+export const ALL_CATEGORIES = "All";
+
+export const SORT = {
+    DEFAULT: "default",
+    PRICE_HIGH_TO_LOW: "price-htl",
+    PRICE_LOW_TO_HIGH: "price-lth",
+    RATING: "rating",
+    STOCK: "stock",
+};
+
+const CATEGORIES = [ALL_CATEGORIES, ...Object.keys(productClasses)];
+
 export class Category {
-    #products;
     #allProducts;
-    #nowSortState;
-    #nowCategory;
 
     constructor() {
         this.#allProducts = products.map((product) => {
@@ -25,56 +34,35 @@ export class Category {
 
             return new ProductClass(product);
         });
-
-        this.#products = this.#allProducts;
-        this.#nowSortState = "default";
-        this.#nowCategory = "All";
     }
 
     findById(id) {
         return this.#allProducts.find((product) => product.id === id);
     }
 
-    filterByCategory(category) {
-        if (category === "All") {
-            this.#products = this.#allProducts;
-        } else {
-            this.#products = this.#allProducts.filter((product) => product.category === category);
+    getProducts(categoryName, sort) {
+        if (!CATEGORIES.includes(categoryName)) {
+            throw new Error(`Unknown category: ${categoryName}`);
         }
 
-        this.#nowCategory = category;
-        this.#products = this.sortBy(this.#nowSortState);
-
-        return [...this.#products];
-    }
-
-    sortBy(property) {
-        const allowedProperties = ["default", "price-htl", "price-lth", "rating", "stock"];
-
-        if (!allowedProperties.includes(property)) {
-            throw new Error(`Invalid sorting property: ${property}`);
+        if (!Object.values(SORT).includes(sort)) {
+            throw new Error(`Invalid sorting property: ${sort}`);
         }
 
-        this.#nowSortState = property;
+        const list =
+            categoryName === ALL_CATEGORIES
+                ? [...this.#allProducts]
+                : this.#allProducts.filter((product) => product.category === categoryName);
 
-        if (property === "default") {
-            if (this.#nowCategory === "All") {
-                this.#products = this.#allProducts;
-            } else {
-                this.#products = this.#allProducts.filter(
-                    (product) => product.category === this.#nowCategory
-                );
-            }
+        if (sort === SORT.DEFAULT) {
+            return list;
         }
-
-        return [...this.#products].sort((a, b) => {
-            if (property === "price-htl") {
-                return b["price"] - a["price"];
-            }
-            if (property === "price-lth") {
-                return a["price"] - b["price"];
-            }
-            return b[property] - a[property];
-        });
+        if (sort === SORT.PRICE_HIGH_TO_LOW) {
+            return list.sort((a, b) => b.price - a.price);
+        }
+        if (sort === SORT.PRICE_LOW_TO_HIGH) {
+            return list.sort((a, b) => a.price - b.price);
+        }
+        return list.sort((a, b) => b[sort] - a[sort]);
     }
 }
