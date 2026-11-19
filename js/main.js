@@ -9,12 +9,13 @@ const category = new Category();
 
 const buttons = document.querySelectorAll(".category-btn");
 const sortSelect = document.getElementById("sort-products");
+const productGrid = document.getElementById("product-grid");
 
 let activeCategory = ALL_CATEGORIES;
 
 const renderProducts = () => {
     const products = category.getProducts(activeCategory, sortSelect.value);
-    buildProductGrid(products);
+    productGrid.innerHTML = buildProductGrid(products);
 };
 
 buttons.forEach((button) => {
@@ -43,17 +44,31 @@ renderProducts();
 
 const cart = new Cart();
 
+const cartItems = document.getElementById("cart-items");
+const cartCount = document.getElementById("cart-count");
+const cartCountLetter = document.getElementById("cart-count-letter");
+
+const setTextIfChanged = (element, text) => {
+    if (element.textContent !== text) {
+        element.textContent = text;
+    }
+};
+
 const renderCart = () => {
     const total = cart.getTotal();
     const totalWithDiscount = cart.getTotalWithDiscount();
+    const items = cart.cartItems;
 
-    buildCartItemsGrid(cart.cartItems);
+    cartItems.innerHTML = buildCartItemsGrid(items);
+    setTextIfChanged(cartCount, String(items.length));
+    setTextIfChanged(
+        cartCountLetter,
+        items.length === 1 ? "item in your cart" : "items in your cart"
+    );
     document.getElementById("subtotal").textContent = `$${total.toFixed(2)}`;
     document.getElementById("discount").textContent = `-$${(total - totalWithDiscount).toFixed(2)}`;
     document.getElementById("total").textContent = `$${totalWithDiscount.toFixed(2)}`;
 };
-
-const productGrid = document.getElementById("product-grid");
 
 productGrid.addEventListener("click", (event) => {
     const button = event.target.closest(".add-to-cart-btn");
@@ -66,8 +81,6 @@ productGrid.addEventListener("click", (event) => {
     }
     renderCart();
 });
-
-const cartItems = document.getElementById("cart-items");
 
 const restoreFocus = (usedButton) => {
     const selector = usedButton.classList.contains("quantity-btn")
