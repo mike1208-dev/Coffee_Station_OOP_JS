@@ -72,7 +72,6 @@ index.html            the page
 css/style.css         styles
 assets/images/        product pictures
 js/main.js            page logic: filter, sort, cart buttons, and putting the HTML in the page
-
 js/buildProductGrid.js, js/buildCartItemsGrid.js   build the HTML
 js/validators.js      shared checks for constructors
 js/data/product.js    product data
