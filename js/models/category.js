@@ -9,6 +9,16 @@ const productClasses = {
     Bread,
 };
 
+export const ALL_CATEGORIES = "All";
+
+export const SORT = {
+    DEFAULT: "default",
+    PRICE_HIGH_TO_LOW: "price-htl",
+    PRICE_LOW_TO_HIGH: "price-lth",
+    RATING: "rating",
+    STOCK: "stock",
+};
+
 export class Category {
     #products;
     #allProducts;
@@ -27,8 +37,8 @@ export class Category {
         });
 
         this.#products = this.#allProducts;
-        this.#nowSortState = "default";
-        this.#nowCategory = "All";
+        this.#nowSortState = SORT.DEFAULT;
+        this.#nowCategory = ALL_CATEGORIES;
     }
 
     findById(id) {
@@ -36,7 +46,7 @@ export class Category {
     }
 
     filterByCategory(category) {
-        if (category === "All") {
+        if (category === ALL_CATEGORIES) {
             this.#products = this.#allProducts;
         } else {
             this.#products = this.#allProducts.filter((product) => product.category === category);
@@ -49,7 +59,7 @@ export class Category {
     }
 
     sortBy(property) {
-        const allowedProperties = ["default", "price-htl", "price-lth", "rating", "stock"];
+        const allowedProperties = Object.values(SORT);
 
         if (!allowedProperties.includes(property)) {
             throw new Error(`Invalid sorting property: ${property}`);
@@ -57,8 +67,8 @@ export class Category {
 
         this.#nowSortState = property;
 
-        if (property === "default") {
-            if (this.#nowCategory === "All") {
+        if (property === SORT.DEFAULT) {
+            if (this.#nowCategory === ALL_CATEGORIES) {
                 this.#products = this.#allProducts;
             } else {
                 this.#products = this.#allProducts.filter(
@@ -68,10 +78,10 @@ export class Category {
         }
 
         return [...this.#products].sort((a, b) => {
-            if (property === "price-htl") {
+            if (property === SORT.PRICE_HIGH_TO_LOW) {
                 return b["price"] - a["price"];
             }
-            if (property === "price-lth") {
+            if (property === SORT.PRICE_LOW_TO_HIGH) {
                 return a["price"] - b["price"];
             }
             return b[property] - a[property];
