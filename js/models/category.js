@@ -19,6 +19,8 @@ export const SORT = {
     STOCK: "stock",
 };
 
+const CATEGORIES = [ALL_CATEGORIES, ...Object.keys(productClasses)];
+
 export class Category {
     #products;
     #allProducts;
@@ -43,6 +45,32 @@ export class Category {
 
     findById(id) {
         return this.#allProducts.find((product) => product.id === id);
+    }
+
+    getProducts(categoryName, sort) {
+        if (!CATEGORIES.includes(categoryName)) {
+            throw new Error(`Unknown category: ${categoryName}`);
+        }
+
+        if (!Object.values(SORT).includes(sort)) {
+            throw new Error(`Invalid sorting property: ${sort}`);
+        }
+
+        const list =
+            categoryName === ALL_CATEGORIES
+                ? [...this.#allProducts]
+                : this.#allProducts.filter((product) => product.category === categoryName);
+
+        if (sort === SORT.DEFAULT) {
+            return list;
+        }
+        if (sort === SORT.PRICE_HIGH_TO_LOW) {
+            return list.sort((a, b) => b.price - a.price);
+        }
+        if (sort === SORT.PRICE_LOW_TO_HIGH) {
+            return list.sort((a, b) => a.price - b.price);
+        }
+        return list.sort((a, b) => b[sort] - a[sort]);
     }
 
     filterByCategory(category) {
