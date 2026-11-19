@@ -71,8 +71,8 @@ npm run format:check   # Prettier (use `npm run format` to fix)
 index.html            the page
 css/style.css         styles
 assets/images/        product pictures
-js/main.js            page logic: filter, sort and cart buttons
-js/buildProductGrid.js, js/buildCartItemsGrid.js   draw the HTML
+js/main.js            page logic: filter, sort, cart buttons, and putting the HTML in the page
+js/buildProductGrid.js, js/buildCartItemsGrid.js   build the HTML
 js/validators.js      shared checks for constructors
 js/data/product.js    product data
 js/models/            the classes
