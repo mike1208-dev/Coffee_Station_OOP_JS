@@ -61,12 +61,14 @@ test("buildProductGrid makes one card for each product", () => {
     const html = buildProductGrid([makeProduct({ id: "a" }), makeProduct({ id: "b" })]);
 
     assert.equal(html.split('<article class="product-card">').length - 1, 2);
+    assert.match(html, /<\/article>\s*<article/);
 });
 
 test("buildCartItemsGrid makes one row for each item", () => {
     const html = buildCartItemsGrid([makeItem({ id: "a" }), makeItem({ id: "b" })]);
 
     assert.equal(html.split('<article class="cart-item">').length - 1, 2);
+    assert.match(html, /<\/article>\s*<article/);
 });
 
 test("the grids return an empty string for an empty list", () => {
